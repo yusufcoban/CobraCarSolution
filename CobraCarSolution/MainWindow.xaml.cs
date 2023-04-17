@@ -131,7 +131,7 @@ namespace CobraCarSolution
         public void testCallEgr(object sender, EventArgs e)
         {
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-            if (selcted != null && selcted.hasEgrSolution && selcted.checkFileForEgr())
+            if (selcted != null && selcted.hasEgrSolution)
             {
                 selcted.egrOffSolution();
             }
@@ -177,9 +177,9 @@ namespace CobraCarSolution
         public bool hasDtcSolution { get; set; }
         public string desciption { get; set; }
 
-        public virtual bool checkFileForEgr()
+        public virtual void checkFileForEgr()
         {
-            return false;
+            
         }
 
         public virtual void egrOffSolution()
@@ -187,9 +187,9 @@ namespace CobraCarSolution
             ToolBox.fileModded = true;
 
         }
-        public virtual bool checkFileForDPF()
+        public virtual void checkFileForDPF()
         {
-            return false;
+            
         }
 
         public virtual void RemoveDtcFromFile(string dtcCode)

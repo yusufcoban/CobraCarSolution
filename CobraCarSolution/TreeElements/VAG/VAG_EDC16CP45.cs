@@ -24,19 +24,7 @@ namespace CobraCarSolution.TreeElements.VAG
             ToolBox.AddLineToConsoleBox("VAG_EDC16CP45 selected...");
         }
 
-        public override bool checkFileForEgr()
-        {
-            //Algo for checking dpf solution
-            return base.checkFileForEgr();
-        }
-
-        public override bool checkFileForDPF()
-        {
-            //Algo for checking dpf solution
-            return base.checkFileForDPF();
-        }
-
-        public void egrOffSolution()
+        public override void egrOffSolution()
         {
 
         }

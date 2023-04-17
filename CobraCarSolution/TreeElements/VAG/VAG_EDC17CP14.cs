@@ -24,26 +24,6 @@ namespace CobraCarSolution.TreeElements.VAG
             ToolBox.AddLineToConsoleBox("VAG_EDC17CP14 selected...");
         }
 
-        public override bool checkFileForEgr()
-        {
-            //Algo for checking dpf solution
-            return base.checkFileForEgr();
-        }
-
-        public override bool checkFileForDPF()
-        {
-            //Algo for checking dpf solution
-            return base.checkFileForDPF();
-        }
-
-        public void egrOffSolution()
-        {
-
-        }
-        public void dpfOffSolution()
-        {
-
-        }
         public List<string> getListOfDtcCodes()
         {
             // get list of all dtcs, Dtc code, mask, current state
@@ -58,5 +38,9 @@ namespace CobraCarSolution.TreeElements.VAG
             base.RemoveDtcFromFile(dtcCode);
         }
 
+        public void dpfOffSolution()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

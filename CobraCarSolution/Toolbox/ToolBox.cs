@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ToggleSwitch;
 
 namespace CobraCarSolution.Toolbox
@@ -21,23 +22,27 @@ namespace CobraCarSolution.Toolbox
             consoleCurrent.ScrollToEnd();
         }
 
-        public static void setEgrButtonState(int state)
+        public static void setEgrButtonState(int state, bool locked = false)
         {
             Window mainWindow = Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
+
             if (state == 0)
             {
-                egrSwitch.IsEnabled = false;
+                egrSwitch.IsChecked = false;
             }
             else if (state == 1)
             {
                 egrSwitch.IsEnabled = true;
-                egrSwitch.IsChecked = false;
             }
-            else if (state == 2)
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
             {
                 egrSwitch.IsEnabled = true;
-                egrSwitch.IsChecked = true;
             }
         }
 

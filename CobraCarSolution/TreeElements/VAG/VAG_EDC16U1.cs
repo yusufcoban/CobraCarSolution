@@ -27,19 +27,10 @@ namespace CobraCarSolution.TreeElements.VAG
         {
 
             ToolBox.AddLineToConsoleBox("VAG_EDC16CP45 selected...");
-            if (checkFileForEgr())
-            {
-                hasEgrSolution = true;
-                ToolBox.setEgrButtonState(2);
-            }
-            else
-            {
-                hasEgrSolution = false;
-                ToolBox.setEgrButtonState(1);
-            }
+            checkFileForEgr();
         }
 
-        public override bool checkFileForEgr()
+        public override void checkFileForEgr()
         {
             //Algo for checking dpf solution
             if (ToolBox.array.Length > 0)
@@ -65,7 +56,7 @@ namespace CobraCarSolution.TreeElements.VAG
                                  }))
                                 {
                                     ToolBox.AddLineToConsoleBox("EGR Maps found in data...");
-                                    return true;
+                                    ToolBox.setEgrButtonState(1);
                                 }
                             }
                         }
@@ -73,14 +64,9 @@ namespace CobraCarSolution.TreeElements.VAG
                 }
             }
             ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
-            return false;
+            ToolBox.setEgrButtonState(1, true);
         }
 
-        public override bool checkFileForDPF()
-        {
-            //Algo for checking dpf solution
-            return base.checkFileForDPF();
-        }
 
         public override void egrOffSolution()
         {
@@ -110,6 +96,7 @@ namespace CobraCarSolution.TreeElements.VAG
         }
         public void dpfOffSolution()
         {
+            throw new NotImplementedException();
 
         }
 
