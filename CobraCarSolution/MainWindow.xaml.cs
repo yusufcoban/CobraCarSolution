@@ -1,8 +1,10 @@
 ﻿using CobraCarSolution.Toolbox;
 using CobraCarSolution.TreeElements.VAG;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -18,7 +20,8 @@ namespace CobraCarSolution
         public bool egrOffEffected = false;
         public bool dpfOffEffected = false;
         public bool dtcOffEffected = false;
-
+        public byte[] array;
+        public string filename;
 
         public MainWindow()
         {
@@ -90,8 +93,24 @@ namespace CobraCarSolution
                     ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
                     dtcList.IsEnabled = true;
                 }
+
+               
+                /*
+                using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
+                {
+                    saveFileDialog1.FileName = filename;
+                    if (DialogResult.OK != saveFileDialog1.ShowDialog())
+                        return;
+                    File.WriteAllBytes(array);
+                }*/
                 ToolBox.AddLineToConsoleBox($"End loaded module...");
+                OpenFileDialog();
             }
+        }
+
+        public void OpenFileDialog()
+        {
+                ToolBox.AddLineToConsoleBox($"Opening file...");
         }
 
         public void testCallEgr(object sender, EventArgs e)
