@@ -109,6 +109,7 @@ namespace CobraCarSolution
 
         public void OpenFileDialog()
         {
+            ToolBox.fileModded = false;
             ToolBox.AddLineToConsoleBox($"Opening file...");
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -183,6 +184,7 @@ namespace CobraCarSolution
 
         public virtual void egrOffSolution()
         {
+            ToolBox.fileModded = true;
 
         }
         public virtual bool checkFileForDPF()

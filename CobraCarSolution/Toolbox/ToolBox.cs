@@ -12,6 +12,7 @@ namespace CobraCarSolution.Toolbox
         public static byte[] array = new byte[0];
         public static string filename = "";
         public static string filepath = "";
+        public static bool fileModded = false;
         public static void AddLineToConsoleBox(string newLine)
         {
             Window mainWindow = Application.Current.MainWindow;

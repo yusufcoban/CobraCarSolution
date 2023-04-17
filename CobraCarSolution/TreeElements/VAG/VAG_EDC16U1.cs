@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.IO;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
@@ -24,6 +25,7 @@ namespace CobraCarSolution.TreeElements.VAG
 
         public override void initFunction()
         {
+
             ToolBox.AddLineToConsoleBox("VAG_EDC16CP45 selected...");
             if (checkFileForEgr())
             {
@@ -62,6 +64,7 @@ namespace CobraCarSolution.TreeElements.VAG
                                     ,0x10 ,0x68 ,0x11 ,0x30 ,0x10 ,0xCC ,0x0D ,0xAC ,0x04 ,0xE2
                                  }))
                                 {
+                                    ToolBox.AddLineToConsoleBox("EGR Maps found in data...");
                                     return true;
                                 }
                             }
@@ -69,6 +72,7 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
+            ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
             return false;
         }
 
@@ -102,6 +106,7 @@ namespace CobraCarSolution.TreeElements.VAG
                     }, new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, "Found egr map...Delete map");
 
+            base.egrOffSolution();
         }
         public void dpfOffSolution()
         {
