@@ -2,6 +2,7 @@
 using CobraCarSolution.TreeElements.VAG;
 using Microsoft.Win32;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -20,8 +21,7 @@ namespace CobraCarSolution
         public bool egrOffEffected = false;
         public bool dpfOffEffected = false;
         public bool dtcOffEffected = false;
-        public byte[] array;
-        public string filename;
+
 
         public MainWindow()
         {
@@ -35,6 +35,8 @@ namespace CobraCarSolution
             MenuItem root2 = new MenuItem() { Title = "VAG" };
             root2.Items.Add(new VAG_EDC17CP14());
             root2.Items.Add(new VAG_EDC16CP45());
+            root2.Items.Add(new VAG_EDC16U1());
+
             MenuItem renault = new MenuItem() { Title = "Renault" };
             MenuItem renault_clio = new MenuItem() { Title = "ClioSpezialSolution" };
             renault_clio.Items.Add(new VAG_EDC16CP45());
@@ -45,10 +47,7 @@ namespace CobraCarSolution
             trvMenu.Items.Add(root);
             trvMenu.Items.Add(root2);
             trvMenu.Items.Add(renault);
-
-
         }
-
 
         private void ResetChangesAndModule()
         {
@@ -71,7 +70,6 @@ namespace CobraCarSolution
 
             if (selcted != null && selcted.IsSolutionItem)
             {
-                selcted.initFunction();
                 if (!String.IsNullOrEmpty(selcted.desciption))
                 {
                     ToolBox.AddLineToConsoleBox($"Additional Infos: {selcted.desciption}. ");
@@ -94,7 +92,7 @@ namespace CobraCarSolution
                     dtcList.IsEnabled = true;
                 }
 
-               
+
                 /*
                 using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
                 {
@@ -105,21 +103,36 @@ namespace CobraCarSolution
                 }*/
                 ToolBox.AddLineToConsoleBox($"End loaded module...");
                 OpenFileDialog();
+                selcted.initFunction();
             }
         }
 
         public void OpenFileDialog()
         {
-                ToolBox.AddLineToConsoleBox($"Opening file...");
+            ToolBox.AddLineToConsoleBox($"Opening file...");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ToolBox.AddLineToConsoleBox($"File selected...");
+                ToolBox.filename = openFileDialog.FileName;
+                ToolBox.filepath = openFileDialog.InitialDirectory;
+                ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
+
+            }
+            else
+            {
+                ToolBox.filename = "";
+                ToolBox.array = new byte[0];
+                ToolBox.filepath = "";
+            }
         }
 
         public void testCallEgr(object sender, EventArgs e)
         {
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-            if (selcted != null)
+            if (selcted != null && selcted.hasEgrSolution && selcted.checkFileForEgr())
             {
-                selcted.initFunction();
-
+                selcted.egrOffSolution();
             }
         }
 
@@ -144,6 +157,8 @@ namespace CobraCarSolution
 
     public class MenuItem
     {
+        public Window mainWindow = Application.Current.MainWindow;
+
         public MenuItem()
         {
             this.Items = new ObservableCollection<MenuItem>();
@@ -165,6 +180,11 @@ namespace CobraCarSolution
         {
             return false;
         }
+
+        public virtual void egrOffSolution()
+        {
+
+        }
         public virtual bool checkFileForDPF()
         {
             return false;
@@ -174,6 +194,7 @@ namespace CobraCarSolution
         {
             ToolBox.AddLineToConsoleBox(dtcCode + " error code removed from file...");
         }
+
         public ObservableCollection<MenuItem> Items { get; set; }
     }
 }
