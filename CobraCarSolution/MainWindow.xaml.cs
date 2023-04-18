@@ -38,6 +38,9 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC16CP45());
             root2.Items.Add(new VAG_EDC17CP44());
             root2.Items.Add(new VAG_EDC16U1());
+            root2.Items.Add(new VAG_EDC17C46());
+
+            
 
             MenuItem renault = new MenuItem() { Title = "Renault" };
             MenuItem renault_clio = new MenuItem() { Title = "ClioSpezialSolution" };

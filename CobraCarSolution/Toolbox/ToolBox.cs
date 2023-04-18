@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -173,19 +174,66 @@ namespace ToolBoxNameSpace
             }
         }
 
-        public static void ReplaceBytes(byte[] search, byte[] repl)
+        public static void ReplaceBytes(byte[] search, byte[] repl, int? minAdress = null, int? maxadress = null)
         {
             //if (repl == null) return array;
             int index = FindBytes(search);
             if (index > -1)
             {
-                //if (index < 0) return array;
-                byte[] dst = new byte[array.Length];
-                Buffer.BlockCopy(array, 0, dst, 0, index);
-                Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
-                Buffer.BlockCopy(array, index + search.Length, dst, index + repl.Length, array.Length - (index + search.Length));
-                array = dst;
+                if (validateReplace(index, minAdress, maxadress))
+                {
+                    //if (index < 0) return array;
+                    byte[] dst = new byte[array.Length];
+                    Buffer.BlockCopy(array, 0, dst, 0, index);
+                    Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
+                    Buffer.BlockCopy(array, index + search.Length, dst, index + repl.Length, array.Length - (index + search.Length));
+                    array = dst;
+                }
             }
+        }
+
+        public static void CopyArrayByteToFile(byte[] input, int startAdressInt)
+        {
+            Buffer.BlockCopy(input, 0, array, startAdressInt, input.Count());
+        }
+
+        public static void FillBytesToFile(byte input, int startAdressInt, int counter)
+        {
+            for (int i = 0; i < counter; i++)
+            {
+                Buffer.BlockCopy(new byte[1] { input }, 0, array, startAdressInt + i, 1);
+            }
+        }
+
+        public static void FillBytesFromToOneByte(byte input, int startAdressInt, int endAdress)
+        {
+            int counter = endAdress - startAdressInt;
+            for (int i = 0; i < counter; i++)
+            {
+                Buffer.BlockCopy(new byte[1] { input }, 0, array, startAdressInt + i, 1);
+            }
+        }
+
+        private static bool validateReplace(int index, int? minAdress, int? maxadress)
+        {
+            bool valid = false;
+            if (minAdress != null && maxadress == null && index >= minAdress)
+            {
+                valid = true;
+            }
+            if (maxadress != null && minAdress == null && index <= maxadress)
+            {
+                valid = true;
+            }
+            if (minAdress != null && maxadress != null && index <= minAdress && index <= maxadress)
+            {
+                valid = true;
+            }
+            if (minAdress == null && maxadress == null)
+            {
+                valid = true;
+            }
+            return valid;
         }
 
         public static int FindBytes(byte[] find)
