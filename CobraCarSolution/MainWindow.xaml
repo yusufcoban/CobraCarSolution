@@ -32,7 +32,7 @@
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="401*"/>
         </Grid.ColumnDefinitions>
-        <TreeView Name="trvMenu" MouseLeftButtonUp="trvMenu_Click" Margin="10,0,158,77">
+        <TreeView Name="trvMenu" PreviewMouseDoubleClick="trvMenu_Click" Margin="10,0,158,77">
             <TreeView.ItemTemplate >
                 <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}" >
                     <TextBlock Text="{Binding Title}"   />

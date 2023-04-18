@@ -1,19 +1,12 @@
-﻿using ToolBoxNameSpace;
-using CobraCarSolution.TreeElements.VAG;
-
-using Microsoft.Win32;
+﻿using CobraCarSolution.TreeElements.VAG;
 
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
-using ToggleSwitch;
-using MaterialDesignExtensions.Controls;
+using ToolBoxNameSpace;
 
 namespace CobraCarSolution
 {
