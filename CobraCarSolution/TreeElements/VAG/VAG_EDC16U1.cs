@@ -30,6 +30,8 @@ namespace CobraCarSolution.TreeElements.VAG
                 ToolBox.AddLineToConsoleBox("Flash loaded with success...");
                 return true;
             }
+            ToolBox.AddLineToConsoleBox("File not recognized...");
+
             return false;
         }
 
