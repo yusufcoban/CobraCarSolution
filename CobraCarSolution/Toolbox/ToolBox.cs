@@ -73,9 +73,9 @@ namespace ToolBoxNameSpace
 
         public static void setDpfButtonState(int state, bool locked = false)
         {
-            Window mainWindow = Application.Current.MainWindow;
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch2") as HorizontalToggleSwitch;
-
+            mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
             if (state == 0)
             {
                 egrSwitch.IsChecked = false;
