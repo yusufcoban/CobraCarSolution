@@ -48,7 +48,7 @@ namespace ToolBoxNameSpace
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
             mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
-           
+
             if (state == 0)
             {
                 egrSwitch.IsChecked = false;
@@ -75,14 +75,14 @@ namespace ToolBoxNameSpace
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch2") as HorizontalToggleSwitch;
-            mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callDpfFunction");
             if (state == 0)
             {
                 egrSwitch.IsChecked = false;
             }
             else if (state == 1)
             {
-                egrSwitch.IsEnabled = true;
+                egrSwitch.IsChecked = true;
             }
 
             if (locked)
@@ -93,6 +93,7 @@ namespace ToolBoxNameSpace
             {
                 egrSwitch.IsEnabled = true;
             }
+            mainWindow.AddSwitchHandler(egrSwitch, "callDpfFunction");
         }
 
         public static void setNoxButtonState(int state, bool locked = false)

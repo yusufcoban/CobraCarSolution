@@ -36,6 +36,7 @@ namespace CobraCarSolution
             MenuItem root2 = new MenuItem() { Title = "VAG" };
             root2.Items.Add(new VAG_EDC17CP14());
             root2.Items.Add(new VAG_EDC16CP45());
+            root2.Items.Add(new VAG_EDC17CP44());
             root2.Items.Add(new VAG_EDC16U1());
 
             MenuItem renault = new MenuItem() { Title = "Renault" };
@@ -156,7 +157,12 @@ namespace CobraCarSolution
         public void callDpfFunction(object sender, EventArgs e)
         {
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-            selcted.initFunction();
+            if (selcted != null && selcted.hasDpfSolution)
+            {
+                selcted.dpfOffSolution();
+                ToolBox.setDpfButtonState(0, true);
+                ToolBox.setSaveButton(true);
+            }
         }
 
         private void dtcList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -224,6 +230,12 @@ namespace CobraCarSolution
         }
 
         public virtual void egrOffSolution()
+        {
+
+
+        }
+
+        public virtual void dpfOffSolution()
         {
 
 
