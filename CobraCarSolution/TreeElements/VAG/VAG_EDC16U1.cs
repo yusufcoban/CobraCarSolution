@@ -1,4 +1,4 @@
-﻿using CobraCarSolution.Toolbox;
+﻿using ToolBoxNameSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +32,7 @@ namespace CobraCarSolution.TreeElements.VAG
 
         public override void checkFileForEgr()
         {
+            bool validationEgrInFile = false;
             //Algo for checking dpf solution
             if (ToolBox.array.Length > 0)
             {
@@ -55,6 +56,7 @@ namespace CobraCarSolution.TreeElements.VAG
                                     ,0x10 ,0x68 ,0x11 ,0x30 ,0x10 ,0xCC ,0x0D ,0xAC ,0x04 ,0xE2
                                  }))
                                 {
+                                    validationEgrInFile = true;
                                     ToolBox.AddLineToConsoleBox("EGR Maps found in data...");
                                     ToolBox.setEgrButtonState(1);
                                 }
@@ -63,8 +65,12 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
-            ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
-            ToolBox.setEgrButtonState(1, true);
+            if (!validationEgrInFile)
+            {
+                ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
+                ToolBox.setEgrButtonState(1, true);
+            }
+
         }
 
 

@@ -1,6 +1,8 @@
-﻿using CobraCarSolution.Toolbox;
+﻿using ToolBoxNameSpace;
 using CobraCarSolution.TreeElements.VAG;
+
 using Microsoft.Win32;
+
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -9,7 +11,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+
 using ToggleSwitch;
+using MaterialDesignExtensions.Controls;
 
 namespace CobraCarSolution
 {
@@ -109,9 +113,10 @@ namespace CobraCarSolution
 
         public void OpenFileDialog()
         {
-            ToolBox.fileModded = false;
+            ToolBox.setSaveButton(false);
+
             ToolBox.AddLineToConsoleBox($"Opening file...");
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 ToolBox.AddLineToConsoleBox($"File selected...");
@@ -128,12 +133,15 @@ namespace CobraCarSolution
             }
         }
 
+
         public void testCallEgr(object sender, EventArgs e)
         {
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
             if (selcted != null && selcted.hasEgrSolution)
             {
                 selcted.egrOffSolution();
+                ToolBox.setEgrButtonState(0, true);
+                ToolBox.setSaveButton(true);
             }
         }
 
@@ -146,6 +154,31 @@ namespace CobraCarSolution
         private void dtcList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ToolBox.setSaveButton(false);
+
+            ToolBox.AddLineToConsoleBox($"Export file...");
+            Microsoft.Win32.SaveFileDialog saveDialog = new Microsoft.Win32.SaveFileDialog();
+            saveDialog.FileName = ToolBox.filename + "_modded_NoChk";
+            saveDialog.InitialDirectory = ToolBox.filepath; // set the default directory
+            saveDialog.Filter = "Bin (*.bin)|*.bin";
+            if (saveDialog.ShowDialog() == true)
+            {
+                File.WriteAllBytes(saveDialog.FileName, ToolBox.array); // Requires System.IO
+                ToolBox.filename = "";
+                ToolBox.array = new byte[0];
+                ToolBox.filepath = "";
+                ToolBox.setAllSwitchButtonState(0, true);
+
+            }
+            else
+            {
+                ToolBox.setSaveButton(true);
+
+            }
         }
     }
 
@@ -179,17 +212,17 @@ namespace CobraCarSolution
 
         public virtual void checkFileForEgr()
         {
-            
+
         }
 
         public virtual void egrOffSolution()
         {
-            ToolBox.fileModded = true;
+           
 
         }
         public virtual void checkFileForDPF()
         {
-            
+
         }
 
         public virtual void RemoveDtcFromFile(string dtcCode)

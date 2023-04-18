@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+
 using ToggleSwitch;
 
-namespace CobraCarSolution.Toolbox
+namespace ToolBoxNameSpace
 {
-    static class ToolBox
+    public static class ToolBox
     {
         public static byte[] array = new byte[0];
         public static string filename = "";
         public static string filepath = "";
-        public static bool fileModded = false;
+
         public static void AddLineToConsoleBox(string newLine)
         {
             Window mainWindow = Application.Current.MainWindow;
             TextBox consoleCurrent = mainWindow.FindName("consoleBox") as TextBox;
             consoleCurrent.Text += "\r\n" + newLine;
             consoleCurrent.ScrollToEnd();
+        }
+
+        public static void setAllSwitchButtonState(int state, bool locked = false)
+        {
+            setEgrButtonState(state,locked);
+            setDpfButtonState(state, locked);
+            setNoxButtonState(state, locked);
+            setImmoButtonState(state, locked);
+
         }
 
         public static void setEgrButtonState(int state, bool locked = false)
@@ -46,6 +55,87 @@ namespace CobraCarSolution.Toolbox
             }
         }
 
+        public static void setDpfButtonState(int state, bool locked = false)
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch2") as HorizontalToggleSwitch;
+
+            if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+        }
+
+        public static void setNoxButtonState(int state, bool locked = false)
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch3") as HorizontalToggleSwitch;
+
+            if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+        }
+
+
+        public static void setImmoButtonState(int state, bool locked = false)
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch4") as HorizontalToggleSwitch;
+
+            if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+        }
+
+        public static void setSaveButton(bool state)
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            Button saveButton = mainWindow.FindName("saveButton") as Button;
+
+            saveButton.IsEnabled = state;
+        }
+
         public static bool ExistsInFile(byte[] findBytes)
         {
             if (FindStartAdressesInFile(findBytes).Any())
@@ -70,12 +160,15 @@ namespace CobraCarSolution.Toolbox
         {
             //if (repl == null) return array;
             int index = FindBytes(search);
-            //if (index < 0) return array;
-            byte[] dst = new byte[array.Length];
-            Buffer.BlockCopy(array, 0, dst, 0, index);
-            Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
-            Buffer.BlockCopy(array, index + search.Length, dst, index + repl.Length, array.Length - (index + search.Length));
-            array = dst;
+            if (index > -1)
+            {
+                //if (index < 0) return array;
+                byte[] dst = new byte[array.Length];
+                Buffer.BlockCopy(array, 0, dst, 0, index);
+                Buffer.BlockCopy(repl, 0, dst, index, repl.Length);
+                Buffer.BlockCopy(array, index + search.Length, dst, index + repl.Length, array.Length - (index + search.Length));
+                array = dst;
+            }
         }
 
         public static int FindBytes(byte[] find)

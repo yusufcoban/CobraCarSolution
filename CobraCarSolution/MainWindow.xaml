@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:ts="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
+        xmlns:toolBox="clr-namespace:ToolBoxNameSpace"
         xmlns:self="clr-namespace:CobraCarSolution"
-    
+        xmlns:local="clr-namespace:CobraCarSolution"
         xmlns:viewmodels="using:CobraCarSolution"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="CobraCarSolution.MainWindow"
         mc:Ignorable="d"
@@ -60,6 +61,7 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
+            <Button Content="Export File" x:Name="saveButton"  IsEnabled="false" Margin="94,205,84,0" VerticalAlignment="Top" Height="52" Click="saveButton_Click"/>
         </Grid>
         <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10,443,0,28" Name="consoleBox" TextWrapping="Wrap" Text="..." Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <ListBox Grid.Column="2" Name="dtcList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="91,0,10,77" SelectionChanged="dtcList_SelectionChanged"/>
