@@ -35,7 +35,7 @@ namespace ToolBoxNameSpace
 
         public static void ResetStateAndFile()
         {
-            AddLineToConsoleBox("Resetted...");
+            AddLineToConsoleBox("Resetting everything...");
             ToolBox.filename = "";
             ToolBox.array = new byte[0];
             ToolBox.filepath = "";
