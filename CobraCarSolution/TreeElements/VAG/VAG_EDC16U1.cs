@@ -23,11 +23,28 @@ namespace CobraCarSolution.TreeElements.VAG
             hasDtcSolution = false;
         }
 
+        public bool checkForFileSize()
+        {
+            if (ToolBox.array.Count() == 1048576)
+            {
+                ToolBox.AddLineToConsoleBox("Flash loaded with success...");
+                return true;
+            }
+            return false;
+        }
+
         public override void initFunction()
         {
 
             ToolBox.AddLineToConsoleBox("VAG_EDC16CP45 selected...");
-            checkFileForEgr();
+            if (checkForFileSize())
+            {
+                checkFileForEgr();
+            }
+            else
+            {
+                ToolBox.ResetStateAndFile();
+            }
         }
 
         public override void checkFileForEgr()

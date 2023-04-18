@@ -2,9 +2,13 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+
+using ToggleSwitch;
 
 using ToolBoxNameSpace;
 
@@ -46,23 +50,9 @@ namespace CobraCarSolution
             trvMenu.Items.Add(renault);
         }
 
-        private void ResetChangesAndModule()
-        {
-            ToolBox.AddLineToConsoleBox($"Back to Start... ");
-            // Disable the toggle button
-            toggleSwitch1.IsEnabled = false;
-            toggleSwitch1.IsChecked = false;
-            toggleSwitch2.IsEnabled = false;
-            toggleSwitch2.IsChecked = false;
-
-            dtcList.IsEnabled = false;
-            egrOffEffected = false;
-            dpfOffEffected = false;
-            dtcOffEffected = false;
-        }
         private void trvMenu_Click(object sender, EventArgs e)
         {
-            ResetChangesAndModule();
+            ToolBox.ResetStateAndFile();
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
 
             if (selcted != null && selcted.IsSolutionItem)
@@ -74,14 +64,12 @@ namespace CobraCarSolution
                 if (selcted.hasEgrSolution)
                 {
                     ToolBox.AddLineToConsoleBox($"Module has egr off solution...");
-                    toggleSwitch1.IsEnabled = true;
-                    toggleSwitch1.IsChecked = true;
+                    ToolBox.setEgrButtonState(1, false);
                 }
                 if (selcted.hasDpfSolution)
                 {
                     ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
-                    toggleSwitch2.IsEnabled = true;
-                    toggleSwitch2.IsChecked = true;
+                    ToolBox.setDpfButtonState(1, false);
                 }
                 if (selcted.hasDtcSolution)
                 {
@@ -102,6 +90,33 @@ namespace CobraCarSolution
                 OpenFileDialog();
                 selcted.initFunction();
             }
+        }
+
+
+        public void RemoveSwitchHandler(HorizontalToggleSwitch switchControl, string handlerName)
+        {
+            // Get a reference to the current MainWindow instance
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            // Get a reference to the event handler method using reflection
+            MethodInfo methodInfo = mainWindow.GetType().GetMethod(handlerName);
+            RoutedEventHandler handler = (RoutedEventHandler)Delegate.CreateDelegate(typeof(RoutedEventHandler), mainWindow, methodInfo);
+
+            // Add the event handler back to the Checked event of the switch control in the current MainWindow
+            switchControl.Unchecked -= handler;
+        }
+
+        public void AddSwitchHandler(HorizontalToggleSwitch switchControl, string handlerName)
+        {
+            // Get a reference to the current MainWindow instance
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            // Get a reference to the event handler method using reflection
+            MethodInfo methodInfo = mainWindow.GetType().GetMethod(handlerName);
+            RoutedEventHandler handler = (RoutedEventHandler)Delegate.CreateDelegate(typeof(RoutedEventHandler), mainWindow, methodInfo);
+
+            // Remove the event handler from the Checked event of the switch control in the current MainWindow
+            switchControl.Unchecked += handler;
         }
 
         public void OpenFileDialog()
@@ -210,7 +225,7 @@ namespace CobraCarSolution
 
         public virtual void egrOffSolution()
         {
-           
+
 
         }
         public virtual void checkFileForDPF()

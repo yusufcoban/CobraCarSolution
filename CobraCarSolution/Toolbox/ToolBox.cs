@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CobraCarSolution;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -24,25 +26,36 @@ namespace ToolBoxNameSpace
 
         public static void setAllSwitchButtonState(int state, bool locked = false)
         {
-            setEgrButtonState(state,locked);
+            setEgrButtonState(state, locked);
             setDpfButtonState(state, locked);
             setNoxButtonState(state, locked);
             setImmoButtonState(state, locked);
 
         }
 
+        public static void ResetStateAndFile()
+        {
+            AddLineToConsoleBox("Resetted...");
+            ToolBox.filename = "";
+            ToolBox.array = new byte[0];
+            ToolBox.filepath = "";
+            setAllSwitchButtonState(0, true);
+            setSaveButton(false);
+        }
+
         public static void setEgrButtonState(int state, bool locked = false)
         {
-            Window mainWindow = Application.Current.MainWindow;
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
-
+            mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
+           
             if (state == 0)
             {
                 egrSwitch.IsChecked = false;
             }
             else if (state == 1)
             {
-                egrSwitch.IsEnabled = true;
+                egrSwitch.IsChecked = true;
             }
 
             if (locked)
@@ -53,6 +66,9 @@ namespace ToolBoxNameSpace
             {
                 egrSwitch.IsEnabled = true;
             }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "testCallEgr");
+
         }
 
         public static void setDpfButtonState(int state, bool locked = false)
