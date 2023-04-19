@@ -159,7 +159,7 @@ namespace ToolBoxNameSpace
 
         public static bool ExistsInFile(byte[] findBytes)
         {
-            if (FindStartAdressesInFile(findBytes).Any())
+            if (CheckInFile(findBytes))
             {
                 return true;
             }
@@ -175,6 +175,18 @@ namespace ToolBoxNameSpace
                     yield return i;
                 }
             }
+        }
+
+        public static bool CheckInFile(byte[] pattern)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array.Skip(i).Take(pattern.Length).SequenceEqual(pattern))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static void ReplaceBytes(byte[] search, byte[] repl, int? minAdress = null, int? maxadress = null)

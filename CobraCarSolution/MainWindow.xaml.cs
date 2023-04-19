@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -56,46 +57,55 @@ namespace CobraCarSolution
             trvMenu.Items.Add(renault);
         }
 
-        private void trvMenu_Click(object sender, EventArgs e)
+        private async void trvMenu_Click(object sender, EventArgs e)
         {
-            ToolBox.ResetStateAndFile();
-            MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-
-            if (selcted != null && selcted.IsSolutionItem)
+            await Task.Run(() =>
             {
-                if (!String.IsNullOrEmpty(selcted.desciption))
+                 Application.Current.Dispatcher.Invoke(async () =>
                 {
-                    ToolBox.AddLineToConsoleBox($"Additional Infos: {selcted.desciption}. ");
-                }
-                if (selcted.hasEgrSolution)
-                {
-                    ToolBox.AddLineToConsoleBox($"Module has egr off solution...");
-                    ToolBox.setEgrButtonState(1, false);
-                }
-                if (selcted.hasDpfSolution)
-                {
-                    ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
-                    ToolBox.setDpfButtonState(1, false);
-                }
-                if (selcted.hasDtcSolution)
-                {
-                    ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
-                    dtcList.IsEnabled = true;
-                }
+                    ToolBox.ResetStateAndFile();
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+
+                    if (selcted != null && selcted.IsSolutionItem)
+                    {
+                        if (!String.IsNullOrEmpty(selcted.desciption))
+                        {
+                            ToolBox.AddLineToConsoleBox($"Additional Infos: {selcted.desciption}. ");
+                        }
+                        if (selcted.hasEgrSolution)
+                        {
+                            ToolBox.AddLineToConsoleBox($"Module has egr off solution...");
+                            ToolBox.setEgrButtonState(1, false);
+                        }
+                        if (selcted.hasDpfSolution)
+                        {
+                            ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
+                            ToolBox.setDpfButtonState(1, false);
+                        }
+                        if (selcted.hasDtcSolution)
+                        {
+                            ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
+                            dtcList.IsEnabled = true;
+                        }
 
 
-                /*
-                using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
-                {
-                    saveFileDialog1.FileName = filename;
-                    if (DialogResult.OK != saveFileDialog1.ShowDialog())
-                        return;
-                    File.WriteAllBytes(array);
-                }*/
-                ToolBox.AddLineToConsoleBox($"End loaded module...");
-                OpenFileDialog();
-                selcted.initFunction();
-            }
+                        /*
+                        using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
+                        {
+                            saveFileDialog1.FileName = filename;
+                            if (DialogResult.OK != saveFileDialog1.ShowDialog())
+                                return;
+                            File.WriteAllBytes(array);
+                        }*/
+                        ToolBox.AddLineToConsoleBox($"End loaded module...");
+                         await OpenFileDialog();
+                        selcted.initFunction();
+                    }
+
+                });
+
+            });
+           
         }
 
 
@@ -125,59 +135,89 @@ namespace CobraCarSolution
             switchControl.Unchecked += handler;
         }
 
-        public void OpenFileDialog()
+        public async Task OpenFileDialog()
         {
             BusyIndicator.IsBusy = true;
-
-            ToolBox.setSaveButton(false);
-
-            ToolBox.AddLineToConsoleBox($"Opening file...");
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            // Start task on a background thread
+           
+            await Task.Run(() =>
             {
-                ToolBox.AddLineToConsoleBox($"File selected...");
-                ToolBox.filename = openFileDialog.FileName;
-                ToolBox.filepath = openFileDialog.InitialDirectory;
-                ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        ToolBox.setSaveButton(false);
 
-            }
-            else
-            {
-                ToolBox.filename = "";
-                ToolBox.array = new byte[0];
-                ToolBox.filepath = "";
-            }
+                        ToolBox.AddLineToConsoleBox($"Opening file...");
+                        Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+                        if (openFileDialog.ShowDialog() == true)
+                        {
+                            ToolBox.AddLineToConsoleBox($"File selected...");
+                            ToolBox.filename = openFileDialog.FileName;
+                            ToolBox.filepath = openFileDialog.InitialDirectory;
+                            ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
+
+                        }
+                        else
+                        {
+                            ToolBox.filename = "";
+                            ToolBox.array = new byte[0];
+                            ToolBox.filepath = "";
+                        }
+                    }
+
+                });
+
+            });
+           
+
             BusyIndicator.IsBusy = false;
 
         }
 
-
-        public void testCallEgr(object sender, EventArgs e)
+        public async void testCallEgr(object sender, EventArgs e)
         {
-            MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-
             BusyIndicator.IsBusy = true;
-            if (selcted != null && selcted.hasEgrSolution)
+
+            await Task.Run(() =>
             {
-                selcted.egrOffSolution();
-                ToolBox.setEgrButtonState(0, true);
-                ToolBox.setSaveButton(true);
-            }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+
+                    if (selcted != null && selcted.hasEgrSolution)
+                    {
+                        selcted.egrOffSolution();
+                        ToolBox.setEgrButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }// Do your work here
+                });
+
+            });
             BusyIndicator.IsBusy = false;
+
 
         }
 
-        public void callDpfFunction(object sender, EventArgs e)
+        public async void callDpfFunction(object sender, EventArgs e)
         {
             BusyIndicator.IsBusy = true;
-
-            MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-            if (selcted != null && selcted.hasDpfSolution)
+            await Task.Run(() =>
             {
-                selcted.dpfOffSolution();
-                ToolBox.setDpfButtonState(0, true);
-                ToolBox.setSaveButton(true);
-            }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.dpfOffSolution();
+                        ToolBox.setDpfButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
 
             BusyIndicator.IsBusy = false;
 
@@ -207,7 +247,6 @@ namespace CobraCarSolution
                 ToolBox.filepath = "";
                 ToolBox.setAllSwitchButtonState(0, true);
                 ToolBox.AddLineToConsoleBox($"Exported with success...");
-
             }
             else
             {
