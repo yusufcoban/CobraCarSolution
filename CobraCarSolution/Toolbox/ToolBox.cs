@@ -1,4 +1,6 @@
-﻿using CobraCarSolution;
+﻿using BusyIndicator;
+
+using CobraCarSolution;
 
 using System;
 using System.Collections.Generic;
@@ -48,6 +50,7 @@ namespace ToolBoxNameSpace
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
+           
             mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
 
             if (state == 0)

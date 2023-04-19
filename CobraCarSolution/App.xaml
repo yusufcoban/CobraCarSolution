@@ -4,5 +4,6 @@
              xmlns:local="clr-namespace:CobraCarSolution"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml"/>
     </Application.Resources>
 </Application>

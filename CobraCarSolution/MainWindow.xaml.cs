@@ -1,4 +1,6 @@
-﻿using CobraCarSolution.TreeElements.VAG;
+﻿using BusyIndicator;
+
+using CobraCarSolution.TreeElements.VAG;
 
 using System;
 using System.Collections.ObjectModel;
@@ -40,7 +42,7 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC16U1());
             root2.Items.Add(new VAG_EDC17C46());
 
-            
+
 
             MenuItem renault = new MenuItem() { Title = "Renault" };
             MenuItem renault_clio = new MenuItem() { Title = "ClioSpezialSolution" };
@@ -125,6 +127,8 @@ namespace CobraCarSolution
 
         public void OpenFileDialog()
         {
+            BusyIndicator.IsBusy = true;
+
             ToolBox.setSaveButton(false);
 
             ToolBox.AddLineToConsoleBox($"Opening file...");
@@ -143,22 +147,30 @@ namespace CobraCarSolution
                 ToolBox.array = new byte[0];
                 ToolBox.filepath = "";
             }
+            BusyIndicator.IsBusy = false;
+
         }
 
 
         public void testCallEgr(object sender, EventArgs e)
         {
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+
+            BusyIndicator.IsBusy = true;
             if (selcted != null && selcted.hasEgrSolution)
             {
                 selcted.egrOffSolution();
                 ToolBox.setEgrButtonState(0, true);
                 ToolBox.setSaveButton(true);
             }
+            BusyIndicator.IsBusy = false;
+
         }
 
         public void callDpfFunction(object sender, EventArgs e)
         {
+            BusyIndicator.IsBusy = true;
+
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
             if (selcted != null && selcted.hasDpfSolution)
             {
@@ -166,6 +178,9 @@ namespace CobraCarSolution
                 ToolBox.setDpfButtonState(0, true);
                 ToolBox.setSaveButton(true);
             }
+
+            BusyIndicator.IsBusy = false;
+
         }
 
         private void dtcList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -179,7 +194,9 @@ namespace CobraCarSolution
 
             ToolBox.AddLineToConsoleBox($"Export file...");
             Microsoft.Win32.SaveFileDialog saveDialog = new Microsoft.Win32.SaveFileDialog();
-            saveDialog.FileName = ToolBox.filename + "_modded_NoChk";
+            string extension = System.IO.Path.GetExtension(ToolBox.filename);
+            string result = ToolBox.filename.Substring(0, ToolBox.filename.Length - extension.Length);
+            saveDialog.FileName = result + "_modded_NoChk";
             saveDialog.InitialDirectory = ToolBox.filepath; // set the default directory
             saveDialog.Filter = "Bin (*.bin)|*.bin";
             if (saveDialog.ShowDialog() == true)
@@ -189,6 +206,7 @@ namespace CobraCarSolution
                 ToolBox.array = new byte[0];
                 ToolBox.filepath = "";
                 ToolBox.setAllSwitchButtonState(0, true);
+                ToolBox.AddLineToConsoleBox($"Exported with success...");
 
             }
             else
