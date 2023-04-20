@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 namespace ToolBoxNameSpace
 {
@@ -36,7 +37,7 @@ namespace ToolBoxNameSpace
         {
             List<DifferenceClass> foundDifferences = new List<DifferenceClass>();
             //First Check size
-            if (src.Count() != dest.Count())
+            if (src.Count() == dest.Count())
             {
                 for (int i = 0; i < src.Count(); i++)
                 {
@@ -72,14 +73,19 @@ namespace ToolBoxNameSpace
 
         public Combarer(string solutionName, List<DifferenceClass> allDifferences)
         {
-            solutionName = this.solutionName;
+            this.solutionName = solutionName;
             allDifferences = allDifferences.OrderBy(o => o.adress).ToList(); // order by adress
             for (int i = 0; i < allDifferences.Count() - 1; i++)
             {
                 int startAdress = allDifferences[i].adress;
                 int newCounter = 0;
 
-                while (allDifferences[i + 1 + newCounter].adress == allDifferences[i + newCounter].adress + 1)
+                if (i + 1 + newCounter >= allDifferences.Count())
+                {
+                    Console.WriteLine("");
+                }
+                while ((i + 1 + newCounter) < allDifferences.Count()
+                    && allDifferences[i + 1 + newCounter].adress == (allDifferences[i + newCounter].adress+1))
                 {
                     newCounter++;
                 }
@@ -89,9 +95,10 @@ namespace ToolBoxNameSpace
                 for (int n = 0; n < newCounter + 1; n++)
                 {
                     differences[n] = allDifferences[i + n].dif;
-                    differences[n] = allDifferences[i + n].org;
+                    orginal[n] = allDifferences[i + n].org;
                 }
                 int endAdress = allDifferences[i + newCounter].adress;
+                i = i + newCounter;
                 DifferenceClassCollection collectionDataCreated = new DifferenceClassCollection(startAdress, endAdress, differences, orginal);
                 collectionDifference.Add(collectionDataCreated);
             }
@@ -106,9 +113,9 @@ namespace ToolBoxNameSpace
 
         public DifferenceClass(int adress, byte dif, byte org)
         {
-            adress = this.adress;
-            org = this.org;
-            dif = this.dif;
+            this.adress = adress;
+            this.org = org;
+            this.dif = dif;
         }
     }
 
@@ -121,10 +128,10 @@ namespace ToolBoxNameSpace
 
         public DifferenceClassCollection(int startAdress, int endAdress, byte[] difference, byte[] orginal)
         {
-            startAdress = this.startAdress;
-            endAdress = this.endAdress;
-            difference = this.difference;
-            orginal = this.orginal;
+            this.startAdress = startAdress;
+            this.endAdress = endAdress;
+            this.difference = difference;
+            this.orginal = orginal;
         }
 
     }

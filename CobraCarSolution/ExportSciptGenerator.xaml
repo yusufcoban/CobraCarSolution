@@ -16,46 +16,46 @@
         <Style TargetType="{x:Type Window}" BasedOn="{StaticResource {x:Type Window}}"/>
     </Window.Style>
     <Grid >
-        <Button Content="Open" HorizontalAlignment="Left" Margin="118,161,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <Button Content="Select orginal" Margin="171,39,708,549"  MinHeight="60"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="118,161,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_2"/>
+        <Button Content="Select orginal" Margin="150,26,729,562"  MinHeight="60" Click="Button_Click_1"/>
         <TextBlock x:Name="egrPath" HorizontalAlignment="Left" Margin="170,164,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="31,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="29" Width="105" Text="EGR OFF"/>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="120,208,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="172,211,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="120,208,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_3"/>
+        <TextBlock x:Name="dpfPath" HorizontalAlignment="Left" Margin="172,211,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="33,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Text="DPF"/><Run Text=" OFF"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="122,253,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="174,256,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="122,253,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_4"/>
+        <TextBlock x:Name="tvaPath" HorizontalAlignment="Left" Margin="174,256,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="35,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Text="TVA"/><Run Text=" OFF"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="120,297,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="172,300,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="120,297,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_5"/>
+        <TextBlock x:Name="lamdaPath" HorizontalAlignment="Left" Margin="172,300,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="33,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Text="LAMBDA"/><Run Text=" OFF"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="122,344,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="174,347,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="122,344,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_6"/>
+        <TextBlock x:Name="flapsPath" HorizontalAlignment="Left" Margin="174,347,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="35,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Text="FLAPS"/><Run Text=" OFF"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="124,389,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="176,392,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="124,389,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_7"/>
+        <TextBlock x:Name="startstopPath" HorizontalAlignment="Left" Margin="176,392,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="37,392,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105" Text="START/STOP"/>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="521,163,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="573,166,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="521,163,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_8"/>
+        <TextBlock x:Name="adbluePath" HorizontalAlignment="Left" Margin="573,166,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="434,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="ADBLUE OFF"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="523,210,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="575,213,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="523,210,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_9"/>
+        <TextBlock x:Name="readinessPath" HorizontalAlignment="Left" Margin="575,213,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="436,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="READINESS"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="525,255,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="577,258,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="525,255,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_10"/>
+        <TextBlock x:Name="specialiPath" HorizontalAlignment="Left" Margin="577,258,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="438,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="IMMO"/><Run Text=" OFF File"/></TextBlock>
-        <Button Content="Open" HorizontalAlignment="Left" Margin="526,299,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="578,302,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="526,299,0,0" VerticalAlignment="Top" Height="34" Width="38" Click="Button_Click_11"/>
+        <TextBlock x:Name="immoPath" HorizontalAlignment="Left" Margin="578,302,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="439,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="Special1"/></TextBlock>
         <Button Content="Open" HorizontalAlignment="Left" Margin="528,346,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="580,349,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <TextBlock x:Name="specialiiPath" HorizontalAlignment="Left" Margin="580,349,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="441,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="Special2"/></TextBlock>
         <Button Content="Open" HorizontalAlignment="Left" Margin="530,391,0,0" VerticalAlignment="Top" Height="34" Width="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="582,394,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
+        <TextBlock x:Name="specialiiiPath" HorizontalAlignment="Left" Margin="582,394,0,0" TextWrapping="Wrap" Text="file not selected..." VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="27" Width="313"/>
         <TextBlock HorizontalAlignment="Left" Margin="443,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.447" Height="29" Width="105"><Run Language="de-de" Text="Special3"/></TextBlock>
         <Button Content="Export differences to script" Margin="43,544,733,39" MinHeight="60" Click="Button_Click"/>
         <Button Content="Reset all" Margin="342,544,433,39"  MinHeight="60"/>
-        <TextBox HorizontalAlignment="Left" Margin="32,41,0,0" TextWrapping="Wrap" Text="EcuName" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.481,0.648"/>
+        <TextBox x:Name="ecuFileName" HorizontalAlignment="Left" Margin="32,41,0,0" TextWrapping="Wrap" Text="EcuName" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.481,0.648"/>
         <TextBox HorizontalAlignment="Left" Margin="847,301,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
         <TextBox HorizontalAlignment="Left" Margin="851,349,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
         <TextBox HorizontalAlignment="Left" Margin="851,390,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
