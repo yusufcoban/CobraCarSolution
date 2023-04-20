@@ -103,7 +103,7 @@ namespace ToolBoxNameSpace
         public static void setNoxButtonState(int state, bool locked = false)
         {
             Window mainWindow = Application.Current.MainWindow;
-            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch3") as HorizontalToggleSwitch;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchLAMDA") as HorizontalToggleSwitch;
 
             if (state == 0)
             {
@@ -128,7 +128,7 @@ namespace ToolBoxNameSpace
         public static void setImmoButtonState(int state, bool locked = false)
         {
             Window mainWindow = Application.Current.MainWindow;
-            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch4") as HorizontalToggleSwitch;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchIMMO") as HorizontalToggleSwitch;
 
             if (state == 0)
             {
@@ -279,6 +279,54 @@ namespace ToolBoxNameSpace
 
         }
 
+        internal static void setTVAButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal static void setLAMDAButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setFLAPSButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setSTARTSTOPButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setADBLUEButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setREADINESSButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setIMMOButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setSPECIALIButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setSPECIALIIButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void setSPECIALIIIButtonState(int v1, bool v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

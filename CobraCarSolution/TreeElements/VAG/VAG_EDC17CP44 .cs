@@ -13,7 +13,6 @@ namespace CobraCarSolution.TreeElements.VAG
 {
     class VAG_EDC17CP44 : MenuItem, ITreeItem
     {
-
         public VAG_EDC17CP44()
         {
             Title = "EDC17CP44";
@@ -22,7 +21,6 @@ namespace CobraCarSolution.TreeElements.VAG
             hasDpfSolution = true;
             hasDtcSolution = false;
         }
-
         public bool checkForFileSize()
         {
             if (ToolBox.array.Count() > 55000)
@@ -34,23 +32,8 @@ namespace CobraCarSolution.TreeElements.VAG
 
             return false;
         }
-
-        public override void initFunction()
-        {
-
-            ToolBox.AddLineToConsoleBox("VAG_EDC17CP44 selected...");
-            if (checkForFileSize())
-            {
-                checkFileForEgr();
-                checkFileForDPF();
-            }
-            else
-            {
-                ToolBox.ResetStateAndFile();
-            }
-        }
-
-        public override void checkFileForEgr()
+      
+        public override async Task<bool> checkFileForEgr()
         {
             bool validationEgrInFile = false;
             //Algo for checking dpf solution
@@ -83,8 +66,6 @@ namespace CobraCarSolution.TreeElements.VAG
                                                                 if (ToolBox.ExistsInFile(new byte[] { 0x0B, 0x0B, 0x0B, 0x01, 0x01, 0x0B, 0x01, 0x00, 0x0B, 0x0B, 0x01, 0x01, 0x01 }))
                                                                 {
                                                                     validationEgrInFile = true;
-                                                                    ToolBox.AddLineToConsoleBox("EGR Maps found in data...");
-                                                                    ToolBox.setEgrButtonState(1);
                                                                 }
                                                             }
                                                         }
@@ -100,15 +81,9 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
-            if (!validationEgrInFile)
-            {
-                ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
-                ToolBox.setEgrButtonState(1, true);
-            }
-
+            return validationEgrInFile;
         }
-
-        public override void checkFileForDPF()
+        public override async Task<bool> checkFileForDpf()
         {
             bool validationEgrInFile = false;
             //Algo for checking dpf solution
@@ -127,8 +102,6 @@ namespace CobraCarSolution.TreeElements.VAG
                                     if (ToolBox.ExistsInFile(new byte[] { 0x3D, 0x03, 0x3D, 0x03, 0x3D, 0x03 }))
                                     {
                                         validationEgrInFile = true;
-                                        ToolBox.AddLineToConsoleBox("DPF Maps found in data...");
-                                        ToolBox.setDpfButtonState(1);
                                     }
                                 }
                             }
@@ -136,14 +109,9 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
-            if (!validationEgrInFile)
-            {
-                ToolBox.AddLineToConsoleBox("DPF Maps not found in data...");
-                ToolBox.setDpfButtonState(1, true);
-            }
+            return validationEgrInFile;
 
         }
-
         public override void egrOffSolution()
         {
             ToolBox.ReplaceInFile(new byte[] { 0x78, 0x05, 0x28, 0x0A, 0xE4, 0x0C, 0xA0, 0x0F, 0x30, 0x11, 0x88, 0x13, 0x88, 0x13 },
@@ -190,7 +158,6 @@ namespace CobraCarSolution.TreeElements.VAG
 
             base.dpfOffSolution();
         }
-
         public List<string> getListOfDtcCodes()
         {
             // get list of all dtcs, Dtc code, mask, current state

@@ -6,11 +6,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Xml.Schema;
 using ToggleSwitch;
 
 using ToolBoxNameSpace;
@@ -61,54 +62,43 @@ namespace CobraCarSolution
         {
             await Task.Run(() =>
             {
-                 Application.Current.Dispatcher.Invoke(async () =>
-                {
-                    ToolBox.ResetStateAndFile();
-                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                Application.Current.Dispatcher.Invoke(async () =>
+               {
+                   ToolBox.ResetStateAndFile();
+                   MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
 
-                    if (selcted != null && selcted.IsSolutionItem)
-                    {
-                        if (!String.IsNullOrEmpty(selcted.desciption))
-                        {
-                            ToolBox.AddLineToConsoleBox($"Additional Infos: {selcted.desciption}. ");
-                        }
-                        if (selcted.hasEgrSolution)
-                        {
-                            ToolBox.AddLineToConsoleBox($"Module has egr off solution...");
-                            ToolBox.setEgrButtonState(1, false);
-                        }
-                        if (selcted.hasDpfSolution)
-                        {
-                            ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
-                            ToolBox.setDpfButtonState(1, false);
-                        }
-                        if (selcted.hasDtcSolution)
-                        {
-                            ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
-                            dtcList.IsEnabled = true;
-                        }
+                   if (selcted != null && selcted.IsSolutionItem)
+                   {
+                       if (!String.IsNullOrEmpty(selcted.desciption))
+                       {
+                           ToolBox.AddLineToConsoleBox($"Additional Infos: {selcted.desciption}. ");
+                       }
+                       if (selcted.hasEgrSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has egr off solution...");
+                           ToolBox.setEgrButtonState(1, false);
+                       }
+                       if (selcted.hasDpfSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
+                           ToolBox.setDpfButtonState(1, false);
+                       }
+                       if (selcted.hasDtcSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
+                           //dtcList.IsEnabled = true;
+                       }
 
+                       ToolBox.AddLineToConsoleBox($"End loaded module...");
+                       await OpenFileDialog();
+                       selcted.initFunction();
+                   }
 
-                        /*
-                        using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
-                        {
-                            saveFileDialog1.FileName = filename;
-                            if (DialogResult.OK != saveFileDialog1.ShowDialog())
-                                return;
-                            File.WriteAllBytes(array);
-                        }*/
-                        ToolBox.AddLineToConsoleBox($"End loaded module...");
-                         await OpenFileDialog();
-                        selcted.initFunction();
-                    }
-
-                });
+               });
 
             });
-           
+
         }
-
-
         public void RemoveSwitchHandler(HorizontalToggleSwitch switchControl, string handlerName)
         {
             // Get a reference to the current MainWindow instance
@@ -121,7 +111,6 @@ namespace CobraCarSolution
             // Add the event handler back to the Checked event of the switch control in the current MainWindow
             switchControl.Unchecked -= handler;
         }
-
         public void AddSwitchHandler(HorizontalToggleSwitch switchControl, string handlerName)
         {
             // Get a reference to the current MainWindow instance
@@ -134,12 +123,11 @@ namespace CobraCarSolution
             // Remove the event handler from the Checked event of the switch control in the current MainWindow
             switchControl.Unchecked += handler;
         }
-
         public async Task OpenFileDialog()
         {
             BusyIndicator.IsBusy = true;
             // Start task on a background thread
-           
+
             await Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -170,12 +158,11 @@ namespace CobraCarSolution
                 });
 
             });
-           
+
 
             BusyIndicator.IsBusy = false;
 
         }
-
         public async void testCallEgr(object sender, EventArgs e)
         {
             BusyIndicator.IsBusy = true;
@@ -199,7 +186,6 @@ namespace CobraCarSolution
 
 
         }
-
         public async void callDpfFunction(object sender, EventArgs e)
         {
             BusyIndicator.IsBusy = true;
@@ -222,12 +208,235 @@ namespace CobraCarSolution
             BusyIndicator.IsBusy = false;
 
         }
+        public async void callTVAFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.tvaoffSolution();
+                        ToolBox.setTVAButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
 
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callLAMDAFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.lamdaOfffSolution();
+                        ToolBox.setLAMDAButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callFLAPSFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.flapsOfffSolution();
+                        ToolBox.setFLAPSButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callSTARTSTOPFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.startStopSolution();
+                        ToolBox.setSTARTSTOPButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callADBLUEFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.adBlueSolution();
+                        ToolBox.setADBLUEButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callREADINESSFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.readnissSolution();
+                        ToolBox.setREADINESSButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callIMMOFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.readnissSolution();
+                        ToolBox.setIMMOButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callSPECIALIFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.specialISolution();
+                        ToolBox.setSPECIALIButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callSPECIALIIFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.specialIISolution();
+                        ToolBox.setSPECIALIIButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
+        public async void callSPECIALIIIFunction(object sender, EventArgs e)
+        {
+            BusyIndicator.IsBusy = true;
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+                    if (selcted != null && selcted.hasDpfSolution)
+                    {
+                        selcted.specialIIISolution();
+                        ToolBox.setSPECIALIIIButtonState(0, true);
+                        ToolBox.setSaveButton(true);
+                    }
+                });
+
+
+            });
+
+            BusyIndicator.IsBusy = false;
+
+        }
         private void dtcList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
+        private void OpenAdminArea(object sender, RoutedEventArgs e)
+        {
+            ExportSciptGenerator exportSciptGenerator = new ExportSciptGenerator();
+            exportSciptGenerator.Show();
+        }
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             ToolBox.setSaveButton(false);
@@ -254,6 +463,10 @@ namespace CobraCarSolution
 
             }
         }
+        private void consoleBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 
     public interface ITreeItem
@@ -274,21 +487,287 @@ namespace CobraCarSolution
 
         public virtual void initFunction()
         {
+            bool prepare = true;
+
+            ToolBox.AddLineToConsoleBox(Title);
+            if (hasFileCheckSize)
+            {
+                prepare = checkFileForSize();
+            }
+
+            if (prepare)
+            {
+                if (hasEgrSolution)
+                {
+                    BaseCheckFileForEgr();
+                }
+                if (hasDpfSolution)
+                {
+                    BaseCheckFileForDPF();
+                }
+                if (hasTVASolution)
+                {
+                    BasecheckFileForTVA();
+                }
+                if (hasLamdaSolution)
+                {
+                    BasecheckFileForLamda();
+                }
+                if (hasFLAPSSolution)
+                {
+                    BasecheckFileForFlaps();
+                }
+                if (hasStartStopSolution)
+                {
+                    BasecheckFileForStartStop();
+                }
+                if (hasADBlueSolution)
+                {
+                    BasecheckFileForAdblue();
+                }
+                if (hasReadinessSolution)
+                {
+                    BasecheckFileForReadiness();
+                }
+                if (hasImmoSolution)
+                {
+                    BasecheckFileForImmo();
+                }
+                if (hasSpecialISolution)
+                {
+                    BasecheckFileForSpecialI();
+                }
+                if (hasSpecialIISolution)
+                {
+                    BasecheckFileForSpecialII();
+                }
+                if (hasSpecialIIISolution)
+                {
+                    BasecheckFileForSpecialIII();
+                }
+            }
+            else
+            {
+                ToolBox.ResetStateAndFile();
+
+            }
             ToolBox.AddLineToConsoleBox("Base method called");
         }
         public string Title { get; set; }
+        public int[] FileSizeArray { get; set; }
         public string Image { get; set; }
         public bool IsSolutionItem { get; set; }
         public bool hasEgrSolution { get; set; }
+        public bool hasTVASolution { get; set; }
+
+        public bool hasFileCheckSize { get; set; }
+
         public bool hasDpfSolution { get; set; }
         public bool hasDtcSolution { get; set; }
+
+        public bool hasLamdaSolution { get; set; }
+        public bool hasFLAPSSolution { get; set; }
+
+        public bool hasStartStopSolution { get; set; }
+        public bool hasADBlueSolution { get; set; }
+
+        public bool hasReadinessSolution { get; set; }
+        public bool hasImmoSolution { get; set; }
+
+        public bool hasSpecialISolution { get; set; }
+
+        public bool hasSpecialIISolution { get; set; }
+        public bool hasSpecialIIISolution { get; set; }
+
+        public string specialISolutionDescription { get; set; }
+        public string specialIISolutionDescription { get; set; }
+        public string specialIIISolutionDescription { get; set; }
+
+
         public string desciption { get; set; }
 
-        public virtual void checkFileForEgr()
+        /**
+         * 
+         * Check
+         * 
+         * 
+         */
+
+        public virtual bool checkFileForSize()
+        {
+            if (FileSizeArray != null && FileSizeArray.Count() > 0)
+            {
+                if (FileSizeArray.Contains(ToolBox.array.Count()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public async void BaseCheckFileForEgr()
+        {
+            ToolBox.setEgrButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching egr maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForEgr();
+
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("Egr maps found...");
+                ToolBox.setEgrButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("Egr maps not found...");
+                ToolBox.setEgrButtonState(1, true);
+            }
+
+        }
+        public async void BaseCheckFileForDPF()
+        {
+            ToolBox.setDpfButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching dpf maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForDpf();
+
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("Dpf maps found...");
+                ToolBox.setDpfButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("Dpf maps not found...");
+                ToolBox.setDpfButtonState(1, true);
+            }
+        }
+        public async void BasecheckFileForTVA()
         {
 
         }
+        public async void BasecheckFileForLamda()
+        {
 
+        }
+        public async void BasecheckFileForFlaps()
+        {
+
+        }
+        public async void BasecheckFileForStartStop()
+        {
+
+        }
+        public async void BasecheckFileForAdblue()
+        {
+
+        }
+        public async void BasecheckFileForReadiness()
+        {
+
+        }
+        public async void BasecheckFileForImmo()
+        {
+
+        }
+        public async void BasecheckFileForSpecialI()
+        {
+
+        }
+        public async void BasecheckFileForSpecialII()
+        {
+
+        }
+        public async void BasecheckFileForSpecialIII()
+        {
+
+        }
+        public virtual async Task<bool> checkFileForEgr()
+        {
+            return false;
+        }
+        public virtual async Task<bool> checkFileForDpf()
+        {
+            return false;
+        }
+        public virtual async Task<bool> checkFileForTva()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForLamda()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForFlaps()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForStartStop()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForAdBlue()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForReadiness()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForImmo()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForSpecialI()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForSpecialII()
+        {
+            return false;
+        }
+
+        public virtual async Task<bool> checkFileForSpecialIII()
+        {
+            return false;
+        }
+        /**
+         * 
+         * 
+         * SOLUTIONS
+         * 
+         * 
+         */
         public virtual void egrOffSolution()
         {
 
@@ -300,15 +779,78 @@ namespace CobraCarSolution
 
 
         }
-        public virtual void checkFileForDPF()
+
+
+        public virtual void lamdaOfffSolution()
         {
 
+
         }
+
+        public virtual void flapsOfffSolution()
+        {
+
+
+        }
+        public virtual void startStopSolution()
+        {
+
+
+        }
+
+        public virtual void adBlueSolution()
+        {
+
+
+        }
+
+        public virtual void readnissSolution()
+        {
+
+
+        }
+        public virtual void immoSolution()
+        {
+
+
+        }
+
+        public virtual void tvaoffSolution()
+        {
+
+
+        }
+
+        public virtual void specialISolution()
+        {
+
+
+        }
+        public virtual void specialIISolution()
+        {
+
+
+        }
+
+        public virtual void specialIIISolution()
+        {
+
+
+        }
+
+        /**
+         * 
+         * 
+         * DTCs
+         * 
+         * 
+         */
 
         public virtual void RemoveDtcFromFile(string dtcCode)
         {
             ToolBox.AddLineToConsoleBox(dtcCode + " error code removed from file...");
         }
+
 
         public ObservableCollection<MenuItem> Items { get; set; }
     }

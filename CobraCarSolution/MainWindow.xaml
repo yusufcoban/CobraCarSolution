@@ -11,69 +11,145 @@
         xmlns:viewmodels="using:CobraCarSolution"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="CobraCarSolution.MainWindow"
         mc:Ignorable="d"
-        Title="CobraCarServiceSolutions" Height="679" Width="1023">
+        Title="CobraCarServiceSolutions" Height="586" Width="1065">
     <Window.Style>
         <Style TargetType="{x:Type Window}" BasedOn="{StaticResource {x:Type Window}}"/>
     </Window.Style>
 
 
-        <Grid RenderTransformOrigin="0.5,0.5" Margin="10,10,10,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="23*"/>
-                <RowDefinition Height="7*"/>
-            </Grid.RowDefinitions>
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+    <Grid RenderTransformOrigin="0.5,0.5" Margin="10,12,27,453">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="438*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="401*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="trvMenu" PreviewMouseDoubleClick="trvMenu_Click" Margin="10,0,148,-404" Grid.RowSpan="1">
+            <TreeView.ItemTemplate >
+                <HierarchicalDataTemplate DataType="{x:Type local:MenuItem}" ItemsSource="{Binding Items}" >
+                    <TextBlock Text="{Binding Title}"   />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <TextBlock Text="Available OneClick Solutions" FontSize="20" FontWeight="Bold" Margin="378,1,372,74" Height="30" Grid.ColumnSpan="3" />
+        <Grid Grid.ColumnSpan="3"  Grid.RowSpan="1" Margin="382,36,341,-350">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="438*"/>
-                <ColumnDefinition Width="60*"/>
-                <ColumnDefinition Width="401*"/>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
-            <TreeView Name="trvMenu" PreviewMouseDoubleClick="trvMenu_Click" Margin="10,0,158,77">
-                <TreeView.ItemTemplate >
-                    <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}" >
-                        <TextBlock Text="{Binding Title}"   />
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+
+            <Grid  Grid.Row="0" Grid.Column="0"  Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="67*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.ColumnSpan="2"  >
+                    <TextBlock Text="Egr:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitch1" Unchecked="testCallEgr"  IsEnabled="False"  RenderTransformOrigin="0.518,0.598" />
+                </StackPanel>
+            </Grid>
+
+            <Grid   Grid.Row="0" Grid.Column="1"  Grid.RowSpan="2">
+                <StackPanel   >
+                    <TextBlock Text="Dpf:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitch2" Unchecked="callDpfFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+
+            <Grid   Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+                <StackPanel   >
+                    <TextBlock Text="TVA:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchTVA" Unchecked="callTVAFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+
+            <Grid   Grid.Row="1" Grid.Column="1"  Grid.RowSpan="2">
+
+                <StackPanel   >
+                    <TextBlock Text="Lamda:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchLAMDA" Unchecked="callLAMDAFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+
+            <Grid   Grid.Row="2" Grid.Column="0" Grid.RowSpan="2">
+                <StackPanel   >
+                    <TextBlock Text="Flaps:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchFLAPS" Unchecked="callFLAPSFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+            <Grid   Grid.Row="2" Grid.Column="1"  Grid.RowSpan="2">
+                <StackPanel   >
+                    <TextBlock Text="Start/Stop:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchSTARTSTOP" Unchecked="callSTARTSTOPFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+
+            </Grid>
+            <Grid   Grid.Row="3" Grid.Column="0" Grid.RowSpan="2">
+
+                <StackPanel  >
+                    <TextBlock Text="Readiness:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchREADINESS" Unchecked="callREADINESSFunction" IsEnabled="False" IsChecked="False"  />
+                </StackPanel>
+
+            </Grid>
+            <Grid   Grid.Row="3" Grid.Column="1" Grid.RowSpan="2">
+
+                <StackPanel  >
+                    <TextBlock Text="Immo:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchIMMO" Unchecked="callIMMOFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+            <Grid   Grid.Row="4" Grid.Column="0" Grid.RowSpan="2">
+
+                <StackPanel   >
+                    <TextBlock Text="Special1:"/>
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALI" Unchecked="callSPECIALIFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+            </Grid>
+            <Grid   Grid.Row="4" Grid.Column="1" Grid.RowSpan="2">
+
+                <StackPanel   >
+                    <TextBlock Text="Special2:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALII" Unchecked="callSPECIALIIFunction" IsEnabled="False" IsChecked="False"/>
+                </StackPanel>
+            </Grid>
+            <Grid   Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2">
+                <StackPanel   >
+                    <TextBlock Text="Adblue:"/>
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchADBLUE" Unchecked="callADBLUEFunction" IsEnabled="False" IsChecked="False" />
+                </StackPanel>
+
+            </Grid>
+            <Grid   Grid.Row="5" Grid.Column="1"  Grid.RowSpan="2">
+
+                <StackPanel  >
+                    <TextBlock Text="Special3:" />
+                    <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALIII" Unchecked="callSPECIALIIFunction" IsEnabled="False"  IsChecked="False"  />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+        <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible"  x:Name="consoleBox" TextWrapping="Wrap" Text="..." TextChanged="consoleBox_TextChanged" Grid.Column="2" Margin="119,0,-22,-405"/>
         <busyIndicator:BusyMask x:Name="BusyIndicator" 
                         IsBusy="True" 
                         IndicatorType="Dashes" 
                         BusyContent="Please wait..." 
                         BusyContentMargin="0,20,0,0" 
-                        IsBusyAtStartup="False" Grid.ColumnSpan="3" Margin="0,0,10,-21" Grid.RowSpan="2" />
-        <Grid Grid.ColumnSpan="3" Margin="336,5,361,77">
-                <Grid Margin="0,0,-10,62">
-                    <StackPanel Margin="10,10,10,84">
-                        <TextBlock Text="Available OneClick Solutions" FontSize="20" FontWeight="Bold" Margin="0 0 0 10" Width="271"/>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" Width="287">
-                            <TextBlock Text="EgrSolution:" Margin="0 0 10 0"/>
-                            <ts:HorizontalToggleSwitch x:Name="toggleSwitch1" Unchecked="testCallEgr"  IsEnabled="False" Margin="0,0,-277,0" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" Width="288">
-                            <TextBlock Text="DpfSolution:" Margin="0 0 10 0"/>
-                            <ts:HorizontalToggleSwitch x:Name="toggleSwitch2" Unchecked="callDpfFunction" IsEnabled="False" IsChecked="False" Margin="0,0,-273,0" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" Width="286">
-                            <TextBlock Text="NOx/LamdaSolution:" Margin="0 0 10 0"/>
-                            <ts:HorizontalToggleSwitch x:Name="toggleSwitch3" IsEnabled="False"  IsChecked="False" Width="88" Margin="0,0,-186,0" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" Width="286">
-                            <TextBlock Text="ImmoSolution:" Margin="0 0 10 0"/>
-                            <ts:HorizontalToggleSwitch x:Name="toggleSwitch4" IsEnabled="False" IsChecked="False" Margin="0,0,-250,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-                <Button Content="Export File" x:Name="saveButton"  IsEnabled="false" Margin="94,205,84,0" VerticalAlignment="Top" Height="52" Click="saveButton_Click"/>
-            </Grid>
-            <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10,443,0,28" Name="consoleBox" TextWrapping="Wrap" Text="..." Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-            <ListBox Grid.Column="2" Name="dtcList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="91,0,10,77" SelectionChanged="dtcList_SelectionChanged"/>
-        </Grid>
+                        IsBusyAtStartup="False" Grid.ColumnSpan="3" Margin="0,0,10,-4" />
+        <Button Content="Export File" x:Name="saveButton" Panel.ZIndex="1" IsEnabled="false" Grid.Column="1" Margin="33,436,352,-392" Click="saveButton_Click" Grid.ColumnSpan="2" />
+        <Button Content="Button"   Panel.ZIndex="1" Click="OpenAdminArea" Margin="360,439,56,-394" Grid.ColumnSpan="2"/>
+    </Grid>
+
 
 </Window>

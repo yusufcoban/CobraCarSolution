@@ -19,11 +19,6 @@ namespace CobraCarSolution.TreeElements.VAG
             hasDtcSolution = false;
         }
 
-        public override void initFunction()
-        {
-            ToolBox.AddLineToConsoleBox("VAG_EDC16CP45 selected...");
-        }
-
         public override void egrOffSolution()
         {
 

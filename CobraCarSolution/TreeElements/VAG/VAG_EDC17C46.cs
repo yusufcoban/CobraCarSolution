@@ -34,21 +34,7 @@ namespace CobraCarSolution.TreeElements.VAG
             return false;
         }
 
-        public override void initFunction()
-        {
-
-            ToolBox.AddLineToConsoleBox("VAG_EDC17C46 selected...");
-            if (checkForFileSize())
-            {
-                checkFileForEgr();
-            }
-            else
-            {
-                ToolBox.ResetStateAndFile();
-            }
-        }
-
-        public override void checkFileForEgr()
+        public override async Task<bool> checkFileForEgr()
         {
             bool validationEgrInFile = false;
             //Algo for checking dpf solution
@@ -85,8 +71,7 @@ namespace CobraCarSolution.TreeElements.VAG
                                                                         if (ToolBox.ExistsInFile(new byte[] { 0xDD, 0x03, 0xDD, 0x03 }))
                                                                         {
                                                                             validationEgrInFile = true;
-                                                                            ToolBox.AddLineToConsoleBox("EGR Maps found in data...");
-                                                                            ToolBox.setEgrButtonState(1);
+
                                                                         }
                                                                     }
                                                                 }
@@ -104,15 +89,11 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
-            if (!validationEgrInFile)
-            {
-                ToolBox.AddLineToConsoleBox("EGR Maps not found in data...");
-                ToolBox.setEgrButtonState(1, true);
-            }
+            return validationEgrInFile;
 
         }
 
-        public override void checkFileForDPF()
+        public override async Task<bool> checkFileForDpf()
         {
             bool validationEgrInFile = false;
             //Algo for checking dpf solution
@@ -131,8 +112,7 @@ namespace CobraCarSolution.TreeElements.VAG
                                     if (ToolBox.ExistsInFile(new byte[] { 0x3D, 0x03, 0x3D, 0x03, 0x3D, 0x03 }))
                                     {
                                         validationEgrInFile = true;
-                                        ToolBox.AddLineToConsoleBox("DPF Maps found in data...");
-                                        ToolBox.setDpfButtonState(1);
+
                                     }
                                 }
                             }
@@ -140,11 +120,7 @@ namespace CobraCarSolution.TreeElements.VAG
                     }
                 }
             }
-            if (!validationEgrInFile)
-            {
-                ToolBox.AddLineToConsoleBox("DPF Maps not found in data...");
-                ToolBox.setDpfButtonState(1, true);
-            }
+            return validationEgrInFile;
 
         }
 
