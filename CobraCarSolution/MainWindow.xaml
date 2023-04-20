@@ -147,7 +147,7 @@
                         IndicatorType="Dashes" 
                         BusyContent="Please wait..." 
                         BusyContentMargin="0,20,0,0" 
-                        IsBusyAtStartup="False" Margin="0,0,204,-305" Grid.ColumnSpan="2" />
+                        IsBusyAtStartup="False" Margin="111,35,329,-297" Grid.ColumnSpan="3" Grid.Column="1" />
         <Button Content="Export File" x:Name="saveButton" Panel.ZIndex="1" IsEnabled="false" Grid.Column="2" Margin="11,484,374,-440" Click="saveButton_Click" Grid.ColumnSpan="2" />
         <Button Content="Button"   Panel.ZIndex="1" Click="OpenAdminArea" Margin="130,484,37,-439" Grid.Column="1"/>
     </Grid>
