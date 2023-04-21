@@ -170,7 +170,7 @@ namespace ToolBoxNameSpace
         {
             if (endAdress == 0)
             {
-                endAdress = startAdress + (findBytes.Count()-1);
+                endAdress = startAdress + (findBytes.Count() - 1);
             }
             return CheckInFileWithStartStopAdress(findBytes, startAdress, endAdress);
         }
@@ -201,18 +201,18 @@ namespace ToolBoxNameSpace
 
         public static bool CheckInFileWithStartStopAdress(byte[] pattern, int startAdress, int endAdress)
         {
-            if (startAdress  < 0)
+            if (startAdress < 0)
             {
                 startAdress = 0;
             }
 
-            if (endAdress > (array.Count()-1))
+            if (endAdress > (array.Count() - 1))
             {
-                endAdress = array.Count()-1;
+                endAdress = array.Count() - 1;
             }
 
-            byte[] cutted = new List<byte>(array).GetRange(startAdress, (endAdress - startAdress)+1).ToArray();
-            for (int i = 0; i < endAdress - startAdress+1; i++)
+            byte[] cutted = new List<byte>(array).GetRange(startAdress, (endAdress - startAdress) + 1).ToArray();
+            for (int i = 0; i < endAdress - startAdress + 1; i++)
             {
                 if (cutted.Skip(i).Take(pattern.Length).SequenceEqual(pattern))
                 {
@@ -225,7 +225,7 @@ namespace ToolBoxNameSpace
         public static void ReplaceBytes(byte[] search, byte[] repl, int? minAdress = null, int? maxadress = null)
         {
             //if (repl == null) return array;
-            int index = FindBytes(search);
+            int index = FindBytesMinStart(search, minAdress);
             if (index > -1)
             {
                 if (validateReplace(index, minAdress, maxadress))
@@ -273,7 +273,7 @@ namespace ToolBoxNameSpace
             {
                 valid = true;
             }
-            if (minAdress != null && maxadress != null && index <= minAdress && index <= maxadress)
+            if (minAdress != null && maxadress != null && index >= minAdress && index <= maxadress)
             {
                 valid = true;
             }
@@ -288,6 +288,27 @@ namespace ToolBoxNameSpace
         {
             if (array == null || find == null || array.Length == 0 || find.Length == 0 || find.Length > array.Length) return -1;
             for (int i = 0; i < array.Length - find.Length + 1; i++)
+            {
+                if (array[i] == find[0])
+                {
+                    for (int m = 1; m < find.Length; m++)
+                    {
+                        if (array[i + m] != find[m]) break;
+                        if (m == find.Length - 1) return i;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        public static int FindBytesMinStart(byte[] find, int? min)
+        {
+            if (min == null)
+            {
+                return FindBytes(find);
+            }
+            if (array == null || find == null || array.Length == 0 || find.Length == 0 || find.Length > array.Length) return -1;
+            for (int i = min.Value; i < array.Length - find.Length + 1; i++)
             {
                 if (array[i] == find[0])
                 {
@@ -320,11 +341,11 @@ namespace ToolBoxNameSpace
             }
             else
             {
-                startAdress = startAdress + buffer;
+                startAdress = startAdress - buffer;
             }
-            if (endAdress + buffer > findBytes.Count())
+            if (endAdress + buffer > array.Count())
             {
-                endAdress = findBytes.Count();
+                endAdress = array.Count();
             }
             else
             {
