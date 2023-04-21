@@ -196,9 +196,12 @@ namespace CobraCarSolution
 
                                             for (int i = 0; i < item.collectionDifference.Count(); i++)
                                             {
-                                                templateForCheck.Add("ToolBox.ExistsInFileMultiple(new byte[] {" + "0x" + String.Join(",0x", item.collectionDifference[i].orginal) + " },  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] {" + "0x" + String.Join(",0x", item.collectionDifference[i].orginal) + " },\r\n new byte[] { " + "0x" + String.Join(",0x", item.collectionDifference[i].difference) + " }," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found egr map...Delete map\");");
+                                                templateForCheck.Add("ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found egr map...Delete map\");");
                                             }
+                                            template.checkFileForEgrCODE = String.Join("\r\n", templateForCheck);
+                                            template.FileForEgrCODE = String.Join("\r\n", templateForReplace);
+
                                             break;
 
                                         case "dpfSolution":
