@@ -5,7 +5,7 @@ namespace ToolBoxNameSpace
 {
     public class FileCombreResult
     {
-        List<CombareCreator> allDifferencesForEcu = new List<CombareCreator>();
+        public List<CombareCreator> allDifferencesForEcu = new List<CombareCreator>();
         public string ecuName = "";
 
         public FileCombreResult(byte[] org, List<DiffCollection> diffCollection, string ecuName)
@@ -31,7 +31,7 @@ namespace ToolBoxNameSpace
 
     public class CombareCreator
     {
-        public CombareResult results = new CombareResult();
+        public CombareResult results =new CombareResult();
 
         public CombareCreator(string solutionName, byte[] src, byte[] dest)
         {
@@ -85,7 +85,7 @@ namespace ToolBoxNameSpace
                     Console.WriteLine("");
                 }
                 while ((i + 1 + newCounter) < allDifferences.Count()
-                    && allDifferences[i + 1 + newCounter].adress == (allDifferences[i + newCounter].adress+1))
+                    && allDifferences[i + 1 + newCounter].adress == (allDifferences[i + newCounter].adress + 1))
                 {
                     newCounter++;
                 }

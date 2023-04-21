@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -63,6 +64,8 @@ namespace CobraCarSolution
                 {
                     template.fileSize = orgFile.Length;
                 }
+
+
                 if (isPathSet(egrPath.Text))
                 {
                     template.hasEgrSolution = true;
@@ -70,6 +73,7 @@ namespace CobraCarSolution
                     egrCollection.solutionName = "egrSolution";
                     egrCollection.compare = File.ReadAllBytes(egrPath.Text);
                     diffCollectionFromUI.Add(egrCollection);
+
                 }
 
                 if (isPathSet(dpfPath.Text))
@@ -171,9 +175,62 @@ namespace CobraCarSolution
                 }
 
                 FileCombreResult newComparer = new FileCombreResult(orgFile, diffCollectionFromUI, ecuFileName.Text);
+
+
                 if (newComparer != null)
                 {
 
+                    if (newComparer.allDifferencesForEcu.Any())
+                    {
+                        foreach (CombareCreator combareCreator in newComparer.allDifferencesForEcu)
+                        {
+                            if (combareCreator.results != null)
+                            {
+                                foreach (Combarer item in combareCreator.results.allCompareResult)
+                                {
+                                    switch (item.solutionName)
+                                    {
+                                        case "egrSolution":
+                                            List<string> templateForCheck = new List<string>();
+                                            List<string> templateForReplace = new List<string>();
+
+                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                            {
+                                                templateForCheck.Add("ToolBox.ExistsInFileMultiple(new byte[] {" + "0x" + String.Join(",0x", item.collectionDifference[i].orginal) + " },  " + item.collectionDifference[i].startAdress + "    );");
+                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] {" + "0x" + String.Join(",0x", item.collectionDifference[i].orginal) + " },\r\n new byte[] { " + "0x" + String.Join(",0x", item.collectionDifference[i].difference) + " }," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found egr map...Delete map\");");
+                                            }
+                                            break;
+
+                                        case "dpfSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "tvaSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "lamdaSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "flapsSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "startStopSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "adblueSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "readinessSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                        case "immoSolution":
+                                            Console.WriteLine("Subject is C++");
+                                            break;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
                     template.TitleECU = ecuFileName.Text;
                     GenerateCSFile.GenerateFile(template, orgFilePath);
                 }

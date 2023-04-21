@@ -81,9 +81,6 @@ namespace CobraCarSolution.TreeElements.GenerateTemplate
             generatedFile = generatedFile.Replace("False", "false");
             generatedFile = generatedFile.Replace("True", "true");
 
-
-
-
             Microsoft.Win32.SaveFileDialog saveDialog = new Microsoft.Win32.SaveFileDialog();
 
             saveDialog.FileName = fileInput.TitleECU + ".cs";

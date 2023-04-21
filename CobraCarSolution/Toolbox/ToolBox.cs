@@ -50,7 +50,7 @@ namespace ToolBoxNameSpace
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
-           
+
             mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
 
             if (state == 0)
@@ -166,6 +166,16 @@ namespace ToolBoxNameSpace
             return false;
         }
 
+        public static bool ExistsInFileMultiple(byte[] findBytes, int startAdress, int endAdress = 0)
+        {
+            if (endAdress == 0)
+            {
+                endAdress = startAdress + findBytes.Count();
+            }
+            return CheckInFileWithStartStopAdress(findBytes, startAdress, endAdress);
+        }
+
+
         public static IEnumerable<int> FindStartAdressesInFile(byte[] pattern)
         {
             for (int i = 0; i < array.Length; i++)
@@ -182,6 +192,35 @@ namespace ToolBoxNameSpace
             for (int i = 0; i < array.Length; i++)
             {
                 if (array.Skip(i).Take(pattern.Length).SequenceEqual(pattern))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool CheckInFileWithStartStopAdress(byte[] pattern, int startAdress, int endAdress, int buffer = 10)
+        {
+            if (startAdress - buffer < 0)
+            {
+                startAdress = 0;
+            }
+            else
+            {
+                startAdress = startAdress + buffer;
+            }
+            if (endAdress + buffer > pattern.Count())
+            {
+                endAdress = pattern.Count();
+            }
+            else
+            {
+                endAdress = endAdress + buffer;
+            }
+            byte[] cutted = new List<byte>(array).GetRange(startAdress, endAdress - startAdress).ToArray();
+            for (int i = 0; i < endAdress - startAdress; i++)
+            {
+                if (cutted.Skip(i).Take(pattern.Length).SequenceEqual(pattern))
                 {
                     return true;
                 }
@@ -279,6 +318,33 @@ namespace ToolBoxNameSpace
 
         }
 
+        public static bool ReplaceInFileWithStartStop(byte[] findBytes, byte[] replaceBytes, int startAdress, int endAdress, string successMessage = "", int buffer = 10)
+        {
+            if (startAdress - buffer < 0)
+            {
+                startAdress = 0;
+            }
+            else
+            {
+                startAdress = startAdress + buffer;
+            }
+            if (endAdress + buffer > findBytes.Count())
+            {
+                endAdress = findBytes.Count();
+            }
+            else
+            {
+                endAdress = endAdress + buffer;
+            }
+            ReplaceBytes(findBytes, replaceBytes, startAdress, endAdress);
+            if (!string.IsNullOrEmpty(successMessage))
+            {
+                AddLineToConsoleBox(successMessage);
+            }
+            return true;
+
+        }
+
         internal static void setTVAButtonState(int v1, bool v2)
         {
             throw new NotImplementedException();
@@ -328,5 +394,12 @@ namespace ToolBoxNameSpace
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class MultipleCheckBytesInFile
+    {
+        public byte[] bytesToCheck = new byte[0];
+        public int startAdress;
+        public int endAdress;
     }
 }
