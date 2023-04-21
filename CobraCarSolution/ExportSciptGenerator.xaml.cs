@@ -1,5 +1,5 @@
 ﻿using BusyIndicator;
-
+using CobraCarSolution.TreeElements.GenerateTemplate;
 using CobraCarSolution.TreeElements.VAG;
 
 using System;
@@ -53,9 +53,19 @@ namespace CobraCarSolution
         {
             if (isPathSet(orgFilePath))
             {
+                string specialItext = specialIDesc.Text;
+                string specialIItext = specialIIDesc.Text;
+                string specialIIItext = specialIIIDesc.Text;
+
                 List<DiffCollection> diffCollectionFromUI = new List<DiffCollection>();
+                GeneralTemplate template = new GeneralTemplate();
+                if (checkedFileSize.IsChecked == true)
+                {
+                    template.fileSize = orgFile.Length;
+                }
                 if (isPathSet(egrPath.Text))
                 {
+                    template.hasEgrSolution = true;
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "egrSolution";
                     egrCollection.compare = File.ReadAllBytes(egrPath.Text);
@@ -64,27 +74,25 @@ namespace CobraCarSolution
 
                 if (isPathSet(dpfPath.Text))
                 {
+                    template.hasDpfSolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "dpfSolution";
                     egrCollection.compare = File.ReadAllBytes(dpfPath.Text);
                     diffCollectionFromUI.Add(egrCollection);
                 }
-                if (isPathSet(lamdaPath.Text))
+                if (isPathSet(tvaPath.Text))
                 {
+                    template.hasTVASolution = true;
                     DiffCollection egrCollection = new DiffCollection();
-                    egrCollection.solutionName = "lamdaSolution";
-                    egrCollection.compare = File.ReadAllBytes(lamdaPath.Text);
+                    egrCollection.solutionName = "tvaSolution";
+                    egrCollection.compare = File.ReadAllBytes(tvaPath.Text);
                     diffCollectionFromUI.Add(egrCollection);
                 }
                 if (isPathSet(lamdaPath.Text))
                 {
-                    DiffCollection egrCollection = new DiffCollection();
-                    egrCollection.solutionName = "lamdaSolution";
-                    egrCollection.compare = File.ReadAllBytes(lamdaPath.Text);
-                    diffCollectionFromUI.Add(egrCollection);
-                }
-                if (isPathSet(lamdaPath.Text))
-                {
+                    template.hasLamdaSolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "lamdaSolution";
                     egrCollection.compare = File.ReadAllBytes(lamdaPath.Text);
@@ -92,6 +100,8 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(flapsPath.Text))
                 {
+                    template.hasFLAPSSolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "flapsSolution";
                     egrCollection.compare = File.ReadAllBytes(lamdaPath.Text);
@@ -99,6 +109,8 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(startstopPath.Text))
                 {
+                    template.hasStartStopSolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "startStopSolution";
                     egrCollection.compare = File.ReadAllBytes(startstopPath.Text);
@@ -107,6 +119,8 @@ namespace CobraCarSolution
 
                 if (isPathSet(adbluePath.Text))
                 {
+                    template.hasADBlueSolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "adblueSolution";
                     egrCollection.compare = File.ReadAllBytes(adbluePath.Text);
@@ -114,6 +128,7 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(readinessPath.Text))
                 {
+                    template.hasEgrSolution = true;
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "readinessSolution";
                     egrCollection.compare = File.ReadAllBytes(readinessPath.Text);
@@ -121,6 +136,7 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(immoPath.Text))
                 {
+                    template.hasImmoSolution = true;
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "immoSolution";
                     egrCollection.compare = File.ReadAllBytes(immoPath.Text);
@@ -128,6 +144,8 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(specialiPath.Text))
                 {
+                    template.hasSpecialISolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "specialiSolution";
                     egrCollection.compare = File.ReadAllBytes(specialiPath.Text);
@@ -135,6 +153,8 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(specialiiPath.Text))
                 {
+                    template.hasSpecialIISolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "specialiiSolution";
                     egrCollection.compare = File.ReadAllBytes(specialiiPath.Text);
@@ -142,6 +162,8 @@ namespace CobraCarSolution
                 }
                 if (isPathSet(specialiiiPath.Text))
                 {
+                    template.hasSpecialIIISolution = true;
+
                     DiffCollection egrCollection = new DiffCollection();
                     egrCollection.solutionName = "specialiiiSolution";
                     egrCollection.compare = File.ReadAllBytes(specialiiiPath.Text);
@@ -152,6 +174,8 @@ namespace CobraCarSolution
                 if (newComparer != null)
                 {
 
+                    template.TitleECU = ecuFileName.Text;
+                    GenerateCSFile.GenerateFile(template, orgFilePath);
                 }
 
             }

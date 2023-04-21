@@ -13,6 +13,7 @@
     <PackageReference Include="BusyIndicators" Version="2.1.1" />
     <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
     <PackageReference Include="MaterialDesignThemes.Wpf" Version="1.0.1" />
+    <PackageReference Include="SmartFormat.NET" Version="3.2.1" />
     <PackageReference Include="ToggleSwitch" Version="1.2.0" />
   </ItemGroup>
 

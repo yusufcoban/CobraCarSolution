@@ -56,10 +56,10 @@
         <Button Content="Export differences to script" Margin="43,544,733,39" MinHeight="60" Click="Button_Click"/>
         <Button Content="Reset all" Margin="342,544,433,39"  MinHeight="60"/>
         <TextBox x:Name="ecuFileName" HorizontalAlignment="Left" Margin="32,41,0,0" TextWrapping="Wrap" Text="EcuName" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.481,0.648"/>
-        <TextBox HorizontalAlignment="Left" Margin="847,301,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
-        <TextBox HorizontalAlignment="Left" Margin="851,349,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
-        <TextBox HorizontalAlignment="Left" Margin="851,390,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
-        <CheckBox Content="AddCheckFileSize" HorizontalAlignment="Left" Margin="33,69,0,0" VerticalAlignment="Top" Height="20" Width="119"/>
+        <TextBox x:Name="specialIDesc" HorizontalAlignment="Left" Margin="847,301,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
+        <TextBox x:Name="specialIIDesc" HorizontalAlignment="Left" Margin="851,349,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
+        <TextBox x:Name="specialIIIDesc" HorizontalAlignment="Left" Margin="851,390,0,0" TextWrapping="Wrap" Text="Desciption" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,0.648"/>
+        <CheckBox x:Name="checkedFileSize" Content="AddCheckFileSize" HorizontalAlignment="Left" Margin="33,69,0,0" VerticalAlignment="Top" Height="20" Width="119"/>
 
     </Grid>
 

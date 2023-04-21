@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.IO;
+using System.Data.SqlTypes;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
@@ -20,6 +21,7 @@ namespace CobraCarSolution.TreeElements.VAG
             hasEgrSolution = true;
             hasDpfSolution = true;
             hasDtcSolution = false;
+            FileSizeArray = new int[] { 0 };
         }
         public bool checkForFileSize()
         {
@@ -32,7 +34,7 @@ namespace CobraCarSolution.TreeElements.VAG
 
             return false;
         }
-      
+
         public override async Task<bool> checkFileForEgr()
         {
             bool validationEgrInFile = false;

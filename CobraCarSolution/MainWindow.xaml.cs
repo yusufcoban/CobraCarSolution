@@ -595,7 +595,7 @@ namespace CobraCarSolution
 
         public virtual bool checkFileForSize()
         {
-            if (FileSizeArray != null && FileSizeArray.Count() > 0)
+            if (FileSizeArray != null && FileSizeArray.Count() > 0 && FileSizeArray.Select(x=>x>0).Any())
             {
                 if (FileSizeArray.Contains(ToolBox.array.Count()))
                 {
