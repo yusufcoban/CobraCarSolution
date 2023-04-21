@@ -170,7 +170,7 @@ namespace ToolBoxNameSpace
         {
             if (endAdress == 0)
             {
-                endAdress = startAdress + findBytes.Count();
+                endAdress = startAdress + (findBytes.Count()-1);
             }
             return CheckInFileWithStartStopAdress(findBytes, startAdress, endAdress);
         }
@@ -199,26 +199,20 @@ namespace ToolBoxNameSpace
             return false;
         }
 
-        public static bool CheckInFileWithStartStopAdress(byte[] pattern, int startAdress, int endAdress, int buffer = 10)
+        public static bool CheckInFileWithStartStopAdress(byte[] pattern, int startAdress, int endAdress)
         {
-            if (startAdress - buffer < 0)
+            if (startAdress  < 0)
             {
                 startAdress = 0;
             }
-            else
+
+            if (endAdress > (array.Count()-1))
             {
-                startAdress = startAdress + buffer;
+                endAdress = array.Count()-1;
             }
-            if (endAdress + buffer > pattern.Count())
-            {
-                endAdress = pattern.Count();
-            }
-            else
-            {
-                endAdress = endAdress + buffer;
-            }
-            byte[] cutted = new List<byte>(array).GetRange(startAdress, endAdress - startAdress).ToArray();
-            for (int i = 0; i < endAdress - startAdress; i++)
+
+            byte[] cutted = new List<byte>(array).GetRange(startAdress, (endAdress - startAdress)+1).ToArray();
+            for (int i = 0; i < endAdress - startAdress+1; i++)
             {
                 if (cutted.Skip(i).Take(pattern.Length).SequenceEqual(pattern))
                 {

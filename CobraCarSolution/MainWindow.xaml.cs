@@ -43,6 +43,8 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC17CP44());
             root2.Items.Add(new VAG_EDC16U1());
             root2.Items.Add(new VAG_EDC17C46());
+            root2.Items.Add(new Edc17TestFile());
+
 
 
 
