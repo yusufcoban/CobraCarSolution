@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -360,54 +361,264 @@ namespace ToolBoxNameSpace
 
         }
 
-        internal static void setTVAButtonState(int v1, bool v2)
+        internal static void setTVAButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchTVA") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callTVAFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callTVAFunction");
         }
 
-        internal static void setLAMDAButtonState(int v1, bool v2)
+        internal static void setLAMDAButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchLAMDA") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callLAMDAFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callLAMDAFunction");
         }
 
-        internal static void setFLAPSButtonState(int v1, bool v2)
+        internal static void setFLAPSButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchFLAPS") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callFLAPSFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callFLAPSFunction");
         }
 
-        internal static void setSTARTSTOPButtonState(int v1, bool v2)
+        internal static void setSTARTSTOPButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchSTARTSTOP") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callSTARTSTOPFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callSTARTSTOPFunction");
         }
 
-        internal static void setADBLUEButtonState(int v1, bool v2)
+        internal static void setADBLUEButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchADBLUE") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callADBLUEFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callADBLUEFunction");
         }
 
-        internal static void setREADINESSButtonState(int v1, bool v2)
+        internal static void setREADINESSButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchREADINESS") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callREADINESSFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callREADINESSFunction");
         }
 
-        internal static void setIMMOButtonState(int v1, bool v2)
+        internal static void setIMMOButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchIMMO") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callIMMOFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callIMMOFunction");
         }
 
-        internal static void setSPECIALIButtonState(int v1, bool v2)
+        internal static void setSPECIALIButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchSPECIALI") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callSPECIALIFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callSPECIALIFunction");
         }
 
-        internal static void setSPECIALIIButtonState(int v1, bool v2)
+        internal static void setSPECIALIIButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchSPECIALII") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callSPECIALIIFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callSPECIALIIFunction");
         }
 
-        internal static void setSPECIALIIIButtonState(int v1, bool v2)
+        internal static void setSPECIALIIIButtonState(int state, bool locked)
         {
-            throw new NotImplementedException();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitchSPECIALIII") as HorizontalToggleSwitch;
+
+            mainWindow.RemoveSwitchHandler(egrSwitch, "callSPECIALIIIFunction"); if (state == 0)
+            {
+                egrSwitch.IsChecked = false;
+            }
+            else if (state == 1)
+            {
+                egrSwitch.IsChecked = true;
+            }
+
+            if (locked)
+            {
+                egrSwitch.IsEnabled = false;
+            }
+            else
+            {
+                egrSwitch.IsEnabled = true;
+            }
+
+            mainWindow.AddSwitchHandler(egrSwitch, "callSPECIALIIIFunction");
         }
     }
 

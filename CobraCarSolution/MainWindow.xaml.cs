@@ -38,7 +38,7 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC17CP44());
             root2.Items.Add(new VAG_EDC16U1());
             root2.Items.Add(new VAG_EDC17C46());
-            //ed te root2.Items.Add(new VAG_ED17CP44GEN());
+            root2.Items.Add(new EcuName());
 
 
             MenuItem renault = new MenuItem() { Title = "Renault" };
@@ -78,6 +78,67 @@ namespace CobraCarSolution
                            ToolBox.AddLineToConsoleBox($"Module has dpf off solution...");
                            ToolBox.setDpfButtonState(1, false);
                        }
+                       if (selcted.hasLamdaSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has lamda off solution...");
+                           ToolBox.setLAMDAButtonState(1, false);
+                       }
+                       if (selcted.hasTVASolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has tva off solution...");
+                           ToolBox.setTVAButtonState(1, false);
+                       }
+                       if (selcted.hasStartStopSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has start stop solution...");
+                           ToolBox.setSTARTSTOPButtonState(1, false);
+                       }
+                       if (selcted.hasFLAPSSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has flaps off solution...");
+                           ToolBox.setFLAPSButtonState(1, false);
+                       }
+                       if (selcted.hasReadinessSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has readness solution...");
+                           ToolBox.setREADINESSButtonState(1, false);
+                       }
+                       if (selcted.hasImmoSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has immo solution...");
+                           ToolBox.setIMMOButtonState(1, false);
+                       }
+                       if (selcted.hasADBlueSolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has adblue off solution...");
+                           ToolBox.setADBLUEButtonState(1, false);
+                       }
+                       if (selcted.hasSpecialISolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has specialI  solution...");
+                           ToolBox.setSPECIALIButtonState(1, false);
+                       }
+                       if (selcted.hasSpecialIISolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has specialII  solution...");
+                           ToolBox.setSPECIALIIButtonState(1, false);
+                       }
+                       if (selcted.hasSpecialISolution)
+                       {
+                           ToolBox.AddLineToConsoleBox($"Module has specialIII  solution...");
+                           ToolBox.setSPECIALIIIButtonState(1, false);
+                       }
+
+
+
+
+
+
+
+
+
+
+
                        if (selcted.hasDtcSolution)
                        {
                            ToolBox.AddLineToConsoleBox($"Module has dtc off solution...");
@@ -85,7 +146,7 @@ namespace CobraCarSolution
                        }
 
                        ToolBox.AddLineToConsoleBox($"End loaded module...");
-                       await OpenFileDialog();
+                       OpenFileDialog();
                        selcted.initFunction();
                    }
 
@@ -118,41 +179,34 @@ namespace CobraCarSolution
             // Remove the event handler from the Checked event of the switch control in the current MainWindow
             switchControl.Unchecked += handler;
         }
-        public async Task OpenFileDialog()
+        public void OpenFileDialog()
         {
             BusyIndicator.IsBusy = true;
             // Start task on a background thread
 
-            await Task.Run(() =>
+
+            MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
+            if (selcted != null && selcted.IsSolutionItem)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                ToolBox.setSaveButton(false);
+
+                ToolBox.AddLineToConsoleBox($"Opening file...");
+                Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
                 {
-                    MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
-                    {
-                        ToolBox.setSaveButton(false);
+                    ToolBox.AddLineToConsoleBox($"File selected...");
+                    ToolBox.filename = openFileDialog.FileName;
+                    ToolBox.filepath = openFileDialog.InitialDirectory;
+                    ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
 
-                        ToolBox.AddLineToConsoleBox($"Opening file...");
-                        Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-                        if (openFileDialog.ShowDialog() == true)
-                        {
-                            ToolBox.AddLineToConsoleBox($"File selected...");
-                            ToolBox.filename = openFileDialog.FileName;
-                            ToolBox.filepath = openFileDialog.InitialDirectory;
-                            ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
-
-                        }
-                        else
-                        {
-                            ToolBox.filename = "";
-                            ToolBox.array = new byte[0];
-                            ToolBox.filepath = "";
-                        }
-                    }
-
-                });
-
-            });
+                }
+                else
+                {
+                    ToolBox.filename = "";
+                    ToolBox.array = new byte[0];
+                    ToolBox.filepath = "";
+                }
+            }
 
 
             BusyIndicator.IsBusy = false;
