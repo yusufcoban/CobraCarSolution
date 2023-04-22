@@ -1,17 +1,13 @@
-﻿using BusyIndicator;
-
-using CobraCarSolution.TreeElements.VAG;
+﻿using CobraCarSolution.TreeElements.VAG;
 
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml.Schema;
 using ToggleSwitch;
 
 using ToolBoxNameSpace;
@@ -42,7 +38,7 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC17CP44());
             root2.Items.Add(new VAG_EDC16U1());
             root2.Items.Add(new VAG_EDC17C46());
-           //ed te root2.Items.Add(new VAG_ED17CP44GEN());
+            //ed te root2.Items.Add(new VAG_ED17CP44GEN());
 
 
             MenuItem renault = new MenuItem() { Title = "Renault" };
