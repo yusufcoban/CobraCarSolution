@@ -265,7 +265,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasTVASolution)
                     {
                         selcted.tvaoffSolution();
                         ToolBox.setTVAButtonState(0, true);
@@ -287,7 +287,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasLamdaSolution)
                     {
                         selcted.lamdaOfffSolution();
                         ToolBox.setLAMDAButtonState(0, true);
@@ -309,7 +309,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasFLAPSSolution)
                     {
                         selcted.flapsOfffSolution();
                         ToolBox.setFLAPSButtonState(0, true);
@@ -331,7 +331,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasStartStopSolution)
                     {
                         selcted.startStopSolution();
                         ToolBox.setSTARTSTOPButtonState(0, true);
@@ -353,7 +353,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasADBlueSolution)
                     {
                         selcted.adBlueSolution();
                         ToolBox.setADBLUEButtonState(0, true);
@@ -375,7 +375,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasReadinessSolution)
                     {
                         selcted.readnissSolution();
                         ToolBox.setREADINESSButtonState(0, true);
@@ -397,9 +397,9 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasImmoSolution)
                     {
-                        selcted.readnissSolution();
+                        selcted.immoSolution();
                         ToolBox.setIMMOButtonState(0, true);
                         ToolBox.setSaveButton(true);
                     }
@@ -419,7 +419,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasSpecialISolution)
                     {
                         selcted.specialISolution();
                         ToolBox.setSPECIALIButtonState(0, true);
@@ -441,7 +441,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasSpecialIISolution)
                     {
                         selcted.specialIISolution();
                         ToolBox.setSPECIALIIButtonState(0, true);
@@ -463,7 +463,7 @@ namespace CobraCarSolution
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
-                    if (selcted != null && selcted.hasDpfSolution)
+                    if (selcted != null && selcted.hasSpecialIIISolution)
                     {
                         selcted.specialIIISolution();
                         ToolBox.setSPECIALIIIButtonState(0, true);
