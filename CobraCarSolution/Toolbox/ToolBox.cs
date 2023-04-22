@@ -312,7 +312,7 @@ namespace ToolBoxNameSpace
             {
                 if (array[i] == find[0])
                 {
-                    for (int m = 1; m < find.Length; m++)
+                    for (int m = 0; m < find.Length; m++)
                     {
                         if (array[i + m] != find[m]) break;
                         if (m == find.Length - 1) return i;
@@ -333,7 +333,7 @@ namespace ToolBoxNameSpace
 
         }
 
-        public static bool ReplaceInFileWithStartStop(byte[] findBytes, byte[] replaceBytes, int startAdress, int endAdress, string successMessage = "", int buffer = 10)
+        public static bool ReplaceInFileWithStartStop(byte[] findBytes, byte[] replaceBytes, int startAdress, int endAdress, string successMessage = "", int buffer = 0)
         {
             if (startAdress - buffer < 0)
             {
