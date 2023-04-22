@@ -328,6 +328,7 @@ namespace CobraCarSolution
                     }
                     template.TitleECU = ecuFileName.Text;
                     GenerateCSFile.GenerateFile(template, orgFilePath);
+                    ResetAll();
                 }
 
             }
@@ -346,7 +347,7 @@ namespace CobraCarSolution
                     {
                         orgFilePath = openFileDialog.FileName;
                         orgFile = File.ReadAllBytes(openFileDialog.FileName);
-
+                        orgPath.Text = openFileDialog.FileName;
                     }
                     else
                     {
@@ -572,6 +573,34 @@ namespace CobraCarSolution
                 });
 
             });
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e)
+        {
+            ResetAll();
+        }
+        private void ResetAll()
+        {
+            orgPath.Text = "file not selected...";
+            egrPath.Text = "file not selected...";
+            dpfPath.Text = "file not selected...";
+            ecuFileName.Text = "EcuName";
+            tvaPath.Text = "file not selected...";
+            lamdaPath.Text = "file not selected...";
+            flapsPath.Text = "file not selected...";
+            startstopPath.Text = "file not selected...";
+            adbluePath.Text = "file not selected...";
+            readinessPath.Text = "file not selected...";
+            immoPath.Text = "file not selected...";
+            specialiPath.Text = "file not selected...";
+            specialiiPath.Text = "file not selected...";
+            specialiiiPath.Text = "file not selected...";
+            specialIIIDesc.Text = "Desciption";
+            specialIDesc.Text = "Desciption";
+            specialIIDesc.Text = "Desciption";
+            checkedFileSize.IsChecked = false;
+            orgFilePath = "";
+            orgFile = new byte[0];
         }
     }
 }
