@@ -26,30 +26,105 @@ namespace CobraCarSolution
         public MainWindow()
         {
             InitializeComponent();
-            MenuItem root = new MenuItem() { Title = "Menu" };
-            MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
-            childItem1.Items.Add(new MenuItem() { Title = "Child item #1.1" });
-            childItem1.Items.Add(new MenuItem() { Title = "Child item #1.2" });
-            root.Items.Add(childItem1);
-            root.Items.Add(new MenuItem() { Title = "Child item #2" });
+            MenuItem hondaEntry = new MenuItem() { Title = "Honda" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            hondaEntry.Items.Add(new HONDA_EDC17CP16());
+
+            MenuItem ivecoEntry = new MenuItem() { Title = "Iveco" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            ivecoEntry.Items.Add(new IVECO_EDC17C1());
+            ivecoEntry.Items.Add(new IVECO_EDC17C49());
+            ivecoEntry.Items.Add(new IVECO_EDC17C52());
+            ivecoEntry.Items.Add(new IVECO_EDC17C54());
+            ivecoEntry.Items.Add(new Iveco_edc17U31());
+            ivecoEntry.Items.Add(new IVECO_EDC39());
+            ivecoEntry.Items.Add(new Iveco_EDC7C1());
+            ivecoEntry.Items.Add(new Iveco_EDC7C1());
+
+
+            MenuItem jeepEntry = new MenuItem() { Title = "Jeep" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            jeepEntry.Items.Add(new jeep_edc16C31());
+            jeepEntry.Items.Add(new JEEP_edc16CP31());
+            jeepEntry.Items.Add(new JEEP_edc16U31());
+
+            MenuItem landRoverEntry = new MenuItem() { Title = "LandRover" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            landRoverEntry.Items.Add(new LANDROVER_edc16cp39());
+
+
+            MenuItem mercedesEntry = new MenuItem() { Title = "Mercedes" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            mercedesEntry.Items.Add(new Mercedes_ME2_7());
+            mercedesEntry.Items.Add(new Mercedes_ME2_7_2());
+            mercedesEntry.Items.Add(new Mercedes_ME2_8());
+            mercedesEntry.Items.Add(new Mercedes_ME2_8_1());
+            mercedesEntry.Items.Add(new Mercedes_Benz_EDC16C2());
+            mercedesEntry.Items.Add(new Mercedes_Benz_EDC16C31());
+
+            MenuItem mitsubushiEntry = new MenuItem() { Title = "Mitsubushi" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            mitsubushiEntry.Items.Add(new MITSUBISHI_EDC16C31());
+            mitsubushiEntry.Items.Add(new MITSUBISHI_EDC16C39());
+            mitsubushiEntry.Items.Add(new MITSUBISHI_EDC16U31());
+            mitsubushiEntry.Items.Add(new MITSUBISHI_EDC16U34());
+
+            MenuItem SuzukiEntry = new MenuItem() { Title = "Suzuki" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            SuzukiEntry.Items.Add(new Suzuki_MagnetiMarelli_MJD6J());
+
+            MenuItem toyotaEntry = new MenuItem() { Title = "Toyota" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            toyotaEntry.Items.Add(new Toyota_edc16c10());
+            toyotaEntry.Items.Add(new Toyota_edc16c31());
+            toyotaEntry.Items.Add(new Toyota_edc17cp07());
+
+
+
+
             MenuItem root2 = new MenuItem() { Title = "VAG" };
+            root2.Items.Add(new VAG_EDC15());
             root2.Items.Add(new VAG_EDC17CP14());
-            root2.Items.Add(new VAG_EDC16CP45());
-            root2.Items.Add(new VAG_EDC17CP44());
-            root2.Items.Add(new VAG_EDC16U1());
-            root2.Items.Add(new VAG_EDC17C46());
+            root2.Items.Add(new VAG_EDC17U01());
+            root2.Items.Add(new VAG_EDC17U04());
+            root2.Items.Add(new VAG_EDC16CP34());
+            root2.Items.Add(new VAG_EDC16U31());
+            root2.Items.Add(new VAG_EDC16U34());
+
+            MenuItem volvoEntry = new MenuItem() { Title = "Volvo" };
+           volvoEntry.Items.Add(new Volvo_XC90_ME7_0());
+           volvoEntry.Items.Add(new Volvo_EDC16C31());
+           volvoEntry.Items.Add(new Volvo_EDC16C34());
 
 
-            MenuItem renault = new MenuItem() { Title = "Renault" };
-            MenuItem renault_clio = new MenuItem() { Title = "ClioSpezialSolution" };
-            renault_clio.Items.Add(new VAG_EDC16CP45());
-            renault.Items.Add(new VAG_EDC17CP14());
-            renault.Items.Add(new VAG_EDC16CP45());
-            renault.Items.Add(renault_clio);
 
-            trvMenu.Items.Add(root);
+
+
+
+
+
+            trvMenu.Items.Add(hondaEntry);
+            trvMenu.Items.Add(ivecoEntry);
+            trvMenu.Items.Add(jeepEntry);
+            trvMenu.Items.Add(landRoverEntry);
+            trvMenu.Items.Add(mercedesEntry);
+            trvMenu.Items.Add(mitsubushiEntry);
+            trvMenu.Items.Add(SuzukiEntry);
+            trvMenu.Items.Add(toyotaEntry);
+            trvMenu.Items.Add(volvoEntry);
+
+
+
+
+
+
+
+
+
+
+
+
             trvMenu.Items.Add(root2);
-            trvMenu.Items.Add(renault);
         }
 
         private async void trvMenu_Click(object sender, EventArgs e)
