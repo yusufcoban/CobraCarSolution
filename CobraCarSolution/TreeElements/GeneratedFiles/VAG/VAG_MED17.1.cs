@@ -1,4 +1,4 @@
-/*using ToolBoxNameSpace;
+using ToolBoxNameSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ using System.Windows;
 using System.IO;
 
 namespace CobraCarSolution.TreeElements.VAG  {
-  class EcuName :MenuItem, ITreeItem  {
-    public EcuName()  {
-      Title = "EcuName";
+  class VAG_MED17_1 :MenuItem, ITreeItem  {
+    public VAG_MED17_1()  {
+      Title = "VAG_MED17.1";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = false;
@@ -217,4 +217,4 @@ namespace CobraCarSolution.TreeElements.VAG  {
     }
 
   }
-}*/
+}

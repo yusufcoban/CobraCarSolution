@@ -90,6 +90,10 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC16CP34());
             root2.Items.Add(new VAG_EDC16U31());
             root2.Items.Add(new VAG_EDC16U34());
+            root2.Items.Add(new VAG_MED17_1());
+            root2.Items.Add(new VAG_PPD1_3());
+
+            
 
             MenuItem volvoEntry = new MenuItem() { Title = "Volvo" };
            volvoEntry.Items.Add(new Volvo_XC90_ME7_0());

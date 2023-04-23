@@ -1,4 +1,4 @@
-/*using ToolBoxNameSpace;
+using ToolBoxNameSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ using System.Windows;
 using System.IO;
 
 namespace CobraCarSolution.TreeElements.VAG  {
-  class EcuName :MenuItem, ITreeItem  {
-    public EcuName()  {
-      Title = "EcuName";
+  class VAG_PPD1_3 :MenuItem, ITreeItem  {
+    public VAG_PPD1_3()  {
+      Title = "VAG_PPD1.3";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = false;
@@ -482,4 +482,4 @@ ToolBox.ReplaceInFileWithStartStop(new byte[]  {8,6,10,135,83,147 },
     }
 
   }
-}*/
+}
