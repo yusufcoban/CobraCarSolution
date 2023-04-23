@@ -15,6 +15,7 @@ namespace CobraCarSolution.TreeElements.VAG
             hasDpfSolution = true;
             hasDtcSolution = false;
             FileSizeArray = new int[] { 0 };
+            
         }
         public bool checkForFileSize()
         {
@@ -107,6 +108,8 @@ namespace CobraCarSolution.TreeElements.VAG
             return validationEgrInFile;
 
         }
+
+
         public override void egrOffSolution()
         {
             ToolBox.ReplaceInFile(new byte[] { 0x78, 0x05, 0x28, 0x0A, 0xE4, 0x0C, 0xA0, 0x0F, 0x30, 0x11, 0x88, 0x13, 0x88, 0x13 },

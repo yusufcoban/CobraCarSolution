@@ -13,6 +13,7 @@ namespace CobraCarSolution.TreeElements.GenerateTemplate
     public class GeneralTemplate
     {
         public string TitleECU = "";
+
         public bool hasEgrSolution = false;
         public bool hasDpfSolution = false;
         public bool hasDtcSolution = false;
