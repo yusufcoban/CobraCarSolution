@@ -1,36 +1,33 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using ToolBoxNameSpace;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
-    class VAG_MED17_1 : MenuItem, ITreeItem
-    {
-        public VAG_MED17_1()
-        {
-            Title = "VAG_MED17.1";
-            IsSolutionItem = true;
-            hasDtcSolution = false;
-            hasEgrSolution = false;
-            hasTVASolution = false;
-            hasFileCheckSize = false;
-            hasDpfSolution = false;
-            hasLamdaSolution = true;
-            hasFLAPSSolution = false;
-            hasStartStopSolution = false;
-            hasADBlueSolution = false;
-            hasReadinessSolution = false;
-            hasImmoSolution = false;
-            hasSpecialISolution = false;
-            hasSpecialIISolution = false;
-            hasSpecialIIISolution = false;
-            specialISolutionDescription = "";
-            specialIISolutionDescription = "";
-            specialIIISolutionDescription = "";
-            desciption = "";
-            FileSizeArray = new int[] { 0 };
-        }
+    class mazda_EDC16C3  :MenuItem, ITreeItem  {
+    public mazda_EDC16C3 ()  {
+      Title = "EDC16C3";
+      IsSolutionItem =  true;
+      hasDtcSolution =  false;
+      hasEgrSolution = true;
+      hasTVASolution = false;
+      hasFileCheckSize =false;
+      hasDpfSolution =false;
+      hasLamdaSolution =false;
+      hasFLAPSSolution =false;
+      hasStartStopSolution =false;
+      hasADBlueSolution =false;
+      hasReadinessSolution =false;
+      hasImmoSolution =false;
+      hasSpecialISolution =false;
+      hasSpecialIISolution =false;
+      hasSpecialIIISolution =false;
+      specialISolutionDescription="";
+      specialIISolutionDescription="";
+      specialIIISolutionDescription="";
+      desciption="";
+      FileSizeArray = new int[]  {  0 };
+    }
 
     public override async Task < bool > checkFileForEgr()  {
       bool validationEgrInFile = true;
@@ -41,7 +38,9 @@ namespace CobraCarSolution.TreeElements.VAG
       return validationEgrInFile;
     }
     public override async Task < bool > checkFileForDpf()  {
-      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
+      bool validationEgrInFile = true;
+      //Algo for checking dpf solution
+      if (ToolBox.array.Length > 0)  {
 
       }
       return validationEgrInFile;
@@ -137,93 +136,79 @@ namespace CobraCarSolution.TreeElements.VAG
       return validationEgrInFile;
     }
 
-        public override void egrOffSolution()
-        {
-
-            base.egrOffSolution();
-        }
-        public override void dpfOffSolution()
-        {
-
-            base.dpfOffSolution();
-        }
-        public override void lamdaOfffSolution()
-        {
-
-            base.lamdaOfffSolution();
-
-        }
-
-        public override void flapsOfffSolution()
-        {
-
-
-            base.flapsOfffSolution();
-        }
-        public override void startStopSolution()
-        {
-
-
-            base.startStopSolution();
-        }
-
-        public override void adBlueSolution()
-        {
-
-
-            base.adBlueSolution();
-        }
-
-        public override void readnissSolution()
-        {
-
-
-            base.readnissSolution();
-        }
-        public override void immoSolution()
-        {
-
-            base.immoSolution();
-
-        }
-
-        public override void tvaoffSolution()
-        {
-
-
-            base.tvaoffSolution();
-        }
-
-        public override void specialISolution()
-        {
-
-
-            base.specialISolution();
-        }
-        public override void specialIISolution()
-        {
-
-            base.specialIISolution();
-
-        }
-
-        public override void specialIIISolution()
-        {
-
-            base.specialIIISolution();
-
-        }
-
-        public List<string> getListOfDtcCodes()
-        {
-            return null;
-        }
-
-        public override void RemoveDtcFromFile(string dtcCode)
-        {
-
-            base.RemoveDtcFromFile(dtcCode);
-        }
+    public override void egrOffSolution()  {
+	
+      base.egrOffSolution();
+    }
+    public override void dpfOffSolution()  {
+	
+      base.dpfOffSolution();
+    }
+    public override void lamdaOfffSolution()  {
+	
+      base.lamdaOfffSolution();
 
     }
+
+    public override void flapsOfffSolution()  {
+	
+
+      base.flapsOfffSolution();
+    }
+    public override void startStopSolution()  {
+	
+
+      base.startStopSolution();
+    }
+
+    public override void adBlueSolution()  {
+	
+
+      base.adBlueSolution();
+    }
+
+    public override void readnissSolution()  {
+	
+
+      base.readnissSolution();
+    }
+    public override void immoSolution()  {
+	
+      base.immoSolution();
+
+    }
+
+    public override void tvaoffSolution()  {
+	
+
+      base.tvaoffSolution();
+    }
+
+    public override void specialISolution()  {
+	
+
+      base.specialISolution();
+    }
+    public override void specialIISolution()  {
+	
+      base.specialIISolution();
+
+    }
+
+    public override void specialIIISolution()  {
+	
+      base.specialIIISolution();
+
+    }
+
+    public List<string> getListOfDtcCodes()  {
+      return null;
+    }
+
+    public override void RemoveDtcFromFile(string dtcCode)  {
+
+      base.RemoveDtcFromFile(dtcCode);
+    }
+
+  }
 }
