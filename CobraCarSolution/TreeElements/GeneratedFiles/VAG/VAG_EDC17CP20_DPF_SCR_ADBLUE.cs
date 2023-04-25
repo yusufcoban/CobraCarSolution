@@ -1,31 +1,30 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using ToolBoxNameSpace;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
-    class VAG_MED17_1 : MenuItem, ITreeItem
+    class VAG_EDC17CP20 : MenuItem, ITreeItem
     {
-        public VAG_MED17_1()
+        public VAG_EDC17CP20()
         {
-            Title = "VAG_MED17.1";
+            Title = "EDC17CP20";
             IsSolutionItem = true;
             hasDtcSolution = false;
             hasEgrSolution = false;
             hasTVASolution = false;
             hasFileCheckSize = false;
-            hasDpfSolution = false;
-            hasLamdaSolution = true;
+            hasDpfSolution = true;
+            hasLamdaSolution = false;
             hasFLAPSSolution = false;
             hasStartStopSolution = false;
-            hasADBlueSolution = false;
+            hasADBlueSolution = true;
             hasReadinessSolution = false;
             hasImmoSolution = false;
-            hasSpecialISolution = false;
+            hasSpecialISolution = true;
             hasSpecialIISolution = false;
             hasSpecialIIISolution = false;
-            specialISolutionDescription = "";
+            specialISolutionDescription = "SCR OFF";
             specialIISolutionDescription = "";
             specialIIISolutionDescription = "";
             desciption = "";
@@ -48,7 +47,10 @@ namespace CobraCarSolution.TreeElements.VAG
             //Algo for checking dpf solution
             if (ToolBox.array.Length > 0)
             {
-
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 4 }, 1596705);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 29, 29 }, 1596889);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 3 }, 1596978);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 1, 1 }, 1998663);
             }
             return validationEgrInFile;
 
@@ -92,7 +94,10 @@ namespace CobraCarSolution.TreeElements.VAG
             //Algo for checking dpf solution
             if (ToolBox.array.Length > 0)
             {
-
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 4 }, 1596705);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 29, 29 }, 1596889);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 3 }, 1596978);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 1, 1 }, 1998663);
             }
             return validationEgrInFile;
         }
@@ -136,7 +141,10 @@ namespace CobraCarSolution.TreeElements.VAG
             //Algo for checking dpf solution
             if (ToolBox.array.Length > 0)
             {
-
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 4 }, 1596705);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 29, 29 }, 1596889);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 3 }, 1596978);
+                validationEgrInFile = validationEgrInFile && ToolBox.ExistsInFileMultiple(new byte[] { 1, 1 }, 1998663);
             }
             return validationEgrInFile;
         }
@@ -170,7 +178,14 @@ namespace CobraCarSolution.TreeElements.VAG
         }
         public override void dpfOffSolution()
         {
-
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 4 },
+         new byte[] { 0 }, 1596705, 1596705, "Found dpf map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 29, 29 },
+             new byte[] { 0, 0 }, 1596889, 1596890, "Found dpf map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 3 },
+             new byte[] { 0 }, 1596978, 1596978, "Found dpf map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 1, 1 },
+             new byte[] { 0, 0 }, 1998663, 1998664, "Found dpf map...Delete map");
             base.dpfOffSolution();
         }
         public override void lamdaOfffSolution()
@@ -188,7 +203,14 @@ namespace CobraCarSolution.TreeElements.VAG
         }
         public override void startStopSolution()
         {
-
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 4 },
+         new byte[] { 0 }, 1596705, 1596705, "Found startstop map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 29, 29 },
+             new byte[] { 0, 0 }, 1596889, 1596890, "Found startstop map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 3 },
+             new byte[] { 0 }, 1596978, 1596978, "Found startstop map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 1, 1 },
+             new byte[] { 0, 0 }, 1998663, 1998664, "Found startstop map...Delete map");
 
             base.startStopSolution();
         }
@@ -222,7 +244,14 @@ namespace CobraCarSolution.TreeElements.VAG
 
         public override void specialISolution()
         {
-
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 4 },
+         new byte[] { 0 }, 1596705, 1596705, "Found immo map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 29, 29 },
+             new byte[] { 0, 0 }, 1596889, 1596890, "Found immo map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 3 },
+             new byte[] { 0 }, 1596978, 1596978, "Found immo map...Delete map");
+            ToolBox.ReplaceInFileWithStartStop(new byte[] { 1, 1 },
+             new byte[] { 0, 0 }, 1998663, 1998664, "Found immo map...Delete map");
 
             base.specialISolution();
         }
