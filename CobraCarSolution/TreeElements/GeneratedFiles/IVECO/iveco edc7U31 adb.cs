@@ -44,39 +44,19 @@ namespace CobraCarSolution.TreeElements.VAG  {
       return validationEgrInFile;
     }
     public override async Task < bool > checkFileForDpf()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
 
     }
     public override async Task < bool > checkFileForTva()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForLamda()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForFlaps()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForStartStop()  {
@@ -1163,57 +1143,27 @@ validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[
     }
 
     public override async Task < bool > checkFileForAdBlue()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForReadiness()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForImmo()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForSpecialI()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForSpecialII()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override async Task < bool > checkFileForSpecialIII()  {
-      bool validationEgrInFile = true;
-      //Algo for checking dpf solution
-      if (ToolBox.array.Length > 0)  {
-
-      }
-      return validationEgrInFile;
+      bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
     }
 
     public override void egrOffSolution()  {

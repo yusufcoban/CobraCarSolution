@@ -792,43 +792,253 @@ namespace CobraCarSolution
         }
         public async void BasecheckFileForTVA()
         {
+            ToolBox.setTVAButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching tva maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForTva();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("TVA maps found...");
+                ToolBox.setTVAButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("TVA maps not found...");
+                ToolBox.setTVAButtonState(1, true);
+            }
         }
         public async void BasecheckFileForLamda()
         {
+            ToolBox.setLAMDAButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching lamda maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForLamda();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("lamda maps found...");
+                ToolBox.setLAMDAButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("lamda maps not found...");
+                ToolBox.setLAMDAButtonState(1, true);
+            }
         }
         public async void BasecheckFileForFlaps()
         {
+            ToolBox.setFLAPSButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching flaps maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForFlaps();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("flaps maps found...");
+                ToolBox.setLAMDAButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("flaps maps not found...");
+                ToolBox.setFLAPSButtonState(1, true);
+            }
         }
         public async void BasecheckFileForStartStop()
         {
+            ToolBox.setSTARTSTOPButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching startstop maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForStartStop();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("startstop maps found...");
+                ToolBox.setSTARTSTOPButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("startstop maps not found...");
+                ToolBox.setSTARTSTOPButtonState(1, true);
+            }
         }
         public async void BasecheckFileForAdblue()
         {
+            ToolBox.setADBLUEButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching adblue maps...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForAdBlue();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("adblue maps found...");
+                ToolBox.setADBLUEButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("adblue maps not found...");
+                ToolBox.setADBLUEButtonState(1, true);
+            }
         }
         public async void BasecheckFileForReadiness()
         {
+            ToolBox.setREADINESSButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching readiness...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForReadiness();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("readiness found...");
+                ToolBox.setREADINESSButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("readiness not found...");
+                ToolBox.setREADINESSButtonState(1, true);
+            }
         }
         public async void BasecheckFileForImmo()
         {
+            ToolBox.setImmoButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching immo...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForImmo();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("immo found...");
+                ToolBox.setImmoButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("immo not found...");
+                ToolBox.setImmoButtonState(1, true);
+            }
         }
         public async void BasecheckFileForSpecialI()
         {
+            ToolBox.setSPECIALIButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching special...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForSpecialI();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("special found...");
+                ToolBox.setADBLUEButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("special not found...");
+                ToolBox.setADBLUEButtonState(1, true);
+            }
         }
         public async void BasecheckFileForSpecialII()
         {
+            ToolBox.setSPECIALIIButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching special...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForSpecialII();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("special found...");
+                ToolBox.setSPECIALIIButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("special not found...");
+                ToolBox.setSPECIALIIButtonState(1, true);
+            }
         }
         public async void BasecheckFileForSpecialIII()
         {
+            ToolBox.setSPECIALIIIButtonState(0, true);
+            bool fileHasEgrMaps = false;
+            ToolBox.AddLineToConsoleBox("Searching special...");
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(async () =>
+                {
+                    fileHasEgrMaps = await this.checkFileForSpecialIII();
 
+                });
+
+            });
+            if (fileHasEgrMaps)
+            {
+                ToolBox.AddLineToConsoleBox("special found...");
+                ToolBox.setSPECIALIIIButtonState(1, false);
+            }
+            else
+            {
+                ToolBox.AddLineToConsoleBox("special not found...");
+                ToolBox.setSPECIALIIIButtonState(1, true);
+            }
         }
         public virtual async Task<bool> checkFileForEgr()
         {
