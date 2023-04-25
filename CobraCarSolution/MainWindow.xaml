@@ -113,14 +113,14 @@
             <Grid   Grid.Row="4" Grid.Column="0" Grid.RowSpan="2">
 
                 <StackPanel   >
-                    <TextBlock Text="Special1:"/>
+                    <TextBlock x:Name="textSPECIALI" Text="Special1:"/>
                     <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALI" Unchecked="callSPECIALIFunction" IsEnabled="False" IsChecked="False" />
                 </StackPanel>
             </Grid>
             <Grid   Grid.Row="4" Grid.Column="1" Grid.RowSpan="2">
 
                 <StackPanel   >
-                    <TextBlock Text="Special2:" />
+                    <TextBlock x:Name="textSPECIALII" Text="Special2:" />
                     <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALII" Unchecked="callSPECIALIIFunction" IsEnabled="False" IsChecked="False"/>
                 </StackPanel>
             </Grid>
@@ -134,7 +134,7 @@
             <Grid   Grid.Row="5" Grid.Column="1"  Grid.RowSpan="2">
 
                 <StackPanel  >
-                    <TextBlock Text="Special3:" />
+                    <TextBlock x:Name="textSPECIALIII" Text="Special3:" />
                     <ts:HorizontalToggleSwitch x:Name="toggleSwitchSPECIALIII" Unchecked="callSPECIALIIFunction" IsEnabled="False"  IsChecked="False"  />
                 </StackPanel>
             </Grid>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,18 +29,42 @@ namespace ToolBoxNameSpace
             consoleCurrent.ScrollToEnd();
         }
 
-        public static void setAllSwitchButtonState(int state, bool locked = false)
+        public static async void setAllSwitchButtonState(int state, bool locked = false)
         {
-            setEgrButtonState(state, locked);
-            setDpfButtonState(state, locked);
-            setNoxButtonState(state, locked);
-            setImmoButtonState(state, locked);
+            await Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    setEgrButtonState(state, locked);
+                    setDpfButtonState(state, locked);
+                    setNoxButtonState(state, locked);
+                    setImmoButtonState(state, locked);
+                    setADBLUEButtonState(state, locked);
+                    setSPECIALIButtonState(state, locked);
+                    setSPECIALIIButtonState(state, locked);
+                    setSPECIALIIIButtonState(state, locked);
+                    setFLAPSButtonState(state, locked);
+                    setTVAButtonState(state, locked);
+                    setREADINESSButtonState(state, locked);
+                    setSTARTSTOPButtonState(state, locked);
+                    setLAMDAButtonState(state, locked);
+                });
+
+            });
 
         }
 
         public static void ResetStateAndFile()
         {
             AddLineToConsoleBox("Resetting everything...");
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            TextBlock textSpecial = mainWindow.FindName("textSPECIALI") as TextBlock;
+            textSpecial.Text = "Special1:";
+            textSpecial = mainWindow.FindName("textSPECIALII") as TextBlock;
+            textSpecial.Text = "Special2:";
+            textSpecial = mainWindow.FindName("textSPECIALIII") as TextBlock;
+            textSpecial.Text = "Special3:";
+
             ToolBox.filename = "";
             ToolBox.array = new byte[0];
             ToolBox.filepath = "";

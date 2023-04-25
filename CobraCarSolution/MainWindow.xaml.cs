@@ -71,12 +71,12 @@ namespace CobraCarSolution
 
             MenuItem bmwEntry = new MenuItem() { Title = "BMW" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
-           bmwEntry.Items.Add(new BMW_EDC17C50());
-           bmwEntry.Items.Add(new BMW_EDC17CP09());
+            bmwEntry.Items.Add(new BMW_EDC17C50());
+            bmwEntry.Items.Add(new BMW_EDC17CP09());
 
             MenuItem nissanEntry = new MenuItem() { Title = "Nissan" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
-            nissanEntry.Items.Add(new nissan_denso()); 
+            nissanEntry.Items.Add(new nissan_denso());
             nissanEntry.Items.Add(new nissan_Denso_SH7058());
             nissanEntry.Items.Add(new nissan_EDC16CP33());
             nissanEntry.Items.Add(new nissan_EDC16CP42());
@@ -113,7 +113,7 @@ namespace CobraCarSolution
 
             MenuItem root2 = new MenuItem() { Title = "VAG" };
             root2.Items.Add(new VAG_EDC15());
-           // root2.Items.Add(new VAG_EDC17CP14());
+            // root2.Items.Add(new VAG_EDC17CP14());
             root2.Items.Add(new VAG_EDC17U01());
             root2.Items.Add(new VAG_EDC17U04());
             root2.Items.Add(new VAG_EDC16CP34());
@@ -123,6 +123,7 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_PPD1_3());
             root2.Items.Add(new VAG_EDC17CP20());
             root2.Items.Add(new vag_EDC17CP14());
+            root2.Items.Add(new VAG_EDC16CP34_2());
             root2.Items.Add(new VAG_EDC17CP46());
 
 
@@ -131,9 +132,9 @@ namespace CobraCarSolution
 
 
             MenuItem volvoEntry = new MenuItem() { Title = "Volvo" };
-           volvoEntry.Items.Add(new Volvo_XC90_ME7_0());
-           volvoEntry.Items.Add(new Volvo_EDC16C31());
-           volvoEntry.Items.Add(new Volvo_EDC16C34());
+            volvoEntry.Items.Add(new Volvo_XC90_ME7_0());
+            volvoEntry.Items.Add(new Volvo_EDC16C31());
+            volvoEntry.Items.Add(new Volvo_EDC16C34());
 
 
 
@@ -158,18 +159,6 @@ namespace CobraCarSolution
             trvMenu.Items.Add(SuzukiEntry);
             trvMenu.Items.Add(toyotaEntry);
             trvMenu.Items.Add(volvoEntry);
-
-
-
-
-
-
-
-
-
-
-
-
             trvMenu.Items.Add(root2);
         }
 
@@ -235,30 +224,23 @@ namespace CobraCarSolution
                        }
                        if (selcted.hasSpecialISolution)
                        {
+                           textSPECIALI.Text = selcted.specialISolutionDescription;
+
                            ToolBox.AddLineToConsoleBox($"Module has specialI  solution...");
                            ToolBox.setSPECIALIButtonState(1, false);
                        }
                        if (selcted.hasSpecialIISolution)
                        {
-                           textSPECIALII.Text = selcted.specialIIISolutionDescription;
+                           textSPECIALII.Text = selcted.specialIISolutionDescription;
                            ToolBox.AddLineToConsoleBox($"Module has specialII  solution...");
                            ToolBox.setSPECIALIIButtonState(1, false);
                        }
-                       if (selcted.hasSpecialISolution)
+                       if (selcted.hasSpecialIIISolution)
                        {
+                           textSPECIALIII.Text = selcted.specialIIISolutionDescription;
                            ToolBox.AddLineToConsoleBox($"Module has specialIII  solution...");
                            ToolBox.setSPECIALIIIButtonState(1, false);
                        }
-
-
-
-
-
-
-
-
-
-
 
                        if (selcted.hasDtcSolution)
                        {
@@ -267,8 +249,17 @@ namespace CobraCarSolution
                        }
 
                        ToolBox.AddLineToConsoleBox($"End loaded module...");
-                       OpenFileDialog();
-                       selcted.initFunction();
+                       bool loadedWithSuccess = OpenFileDialog();
+                       if (loadedWithSuccess)
+                       {
+                           ToolBox.AddLineToConsoleBox($"File selected...");
+                           selcted.initFunction();
+                       }
+                       else
+                       {
+                           ToolBox.ResetStateAndFile();
+                           ToolBox.AddLineToConsoleBox($"File not selected...");
+                       }
                    }
 
                });
@@ -300,12 +291,11 @@ namespace CobraCarSolution
             // Remove the event handler from the Checked event of the switch control in the current MainWindow
             switchControl.Unchecked += handler;
         }
-        public void OpenFileDialog()
+        public bool OpenFileDialog()
         {
+            bool fileLoadedWithSuccess = false;
             BusyIndicator.IsBusy = true;
             // Start task on a background thread
-
-
             MenuItem selcted = (MenuItem)trvMenu.SelectedItem;
             if (selcted != null && selcted.IsSolutionItem)
             {
@@ -319,19 +309,20 @@ namespace CobraCarSolution
                     ToolBox.filename = openFileDialog.FileName;
                     ToolBox.filepath = openFileDialog.InitialDirectory;
                     ToolBox.array = File.ReadAllBytes(openFileDialog.FileName);
-
+                    fileLoadedWithSuccess = true;
                 }
                 else
                 {
                     ToolBox.filename = "";
                     ToolBox.array = new byte[0];
                     ToolBox.filepath = "";
+
                 }
             }
 
 
             BusyIndicator.IsBusy = false;
-
+            return fileLoadedWithSuccess;
         }
         public async void testCallEgr(object sender, EventArgs e)
         {
@@ -1025,12 +1016,12 @@ namespace CobraCarSolution
             if (fileHasEgrMaps)
             {
                 ToolBox.AddLineToConsoleBox("special found...");
-                ToolBox.setADBLUEButtonState(1, false);
+                ToolBox.setSPECIALIButtonState(1, false);
             }
             else
             {
                 ToolBox.AddLineToConsoleBox("special not found...");
-                ToolBox.setADBLUEButtonState(1, true);
+                ToolBox.setSPECIALIButtonState(1, true);
             }
         }
         public async void BasecheckFileForSpecialII()

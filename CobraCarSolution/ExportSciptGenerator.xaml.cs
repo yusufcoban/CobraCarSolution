@@ -585,6 +585,7 @@ namespace CobraCarSolution
         }
         private void ResetAll()
         {
+
             orgPath.Text = "file not selected...";
             egrPath.Text = "file not selected...";
             dpfPath.Text = "file not selected...";
