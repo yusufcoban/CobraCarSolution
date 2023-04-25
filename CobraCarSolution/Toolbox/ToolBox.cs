@@ -56,7 +56,7 @@ namespace ToolBoxNameSpace
 
         public static void ResetStateAndFile()
         {
-            AddLineToConsoleBox("Resetting everything...");
+            //AddLineToConsoleBox("Resetting everything...");
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             TextBlock textSpecial = mainWindow.FindName("textSPECIALI") as TextBlock;
             textSpecial.Text = "Special1:";
