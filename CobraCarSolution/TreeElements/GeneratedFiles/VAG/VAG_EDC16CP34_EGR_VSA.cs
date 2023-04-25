@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
-    class VAG_EDC16CP34 :MenuItem, ITreeItem  {
-    public VAG_EDC16CP34()  {
-      Title = "VAG_EDC16CP34";
+    class VAG_EDC16CP34_2 :MenuItem, ITreeItem  {
+    public VAG_EDC16CP34_2()  {
+      Title = "VAG_EDC16CP34_V2";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = true;

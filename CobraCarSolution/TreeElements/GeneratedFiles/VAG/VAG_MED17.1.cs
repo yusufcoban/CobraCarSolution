@@ -43,8 +43,6 @@ namespace CobraCarSolution.TreeElements.VAG
     public override async Task < bool > checkFileForDpf()  {
       bool validationEgrInFile = false;  if (ToolBox.array.Length > 0)  {} return validationEgrInFile;
 
-      }
-      return validationEgrInFile;
 
     }
     public override async Task < bool > checkFileForTva()  {
