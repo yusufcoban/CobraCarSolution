@@ -1,16 +1,10 @@
-using ToolBoxNameSpace;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows;
-using System.IO;
+using ToolBoxNameSpace;
 
-namespace CobraCarSolution.TreeElements.VAG  {
-  class VAG_EDC16U34 : MenuItem, ITreeItem  {
+namespace CobraCarSolution.TreeElements.VAG
+{
+    class VAG_EDC16U34 : MenuItem, ITreeItem  {
     public VAG_EDC16U34()  {
       Title = "EDC16U34";
       IsSolutionItem =  true;

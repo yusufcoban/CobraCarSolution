@@ -5,7 +5,18 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>image.ico</ApplicationIcon>
+    <Company>$(CobraCarSolution)</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="image.png" />
+    <None Remove="logoSingleWhite.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="image.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AdonisUI" Version="1.17.1" />
@@ -21,6 +32,11 @@
     <Folder Include="TreeElements\GeneratedFiles\Mazda\" />
     <Folder Include="TreeElements\Testfiles\" />
     <Folder Include="TreeElements\PSA\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image.png" />
+    <Resource Include="logoSingleWhite.png" />
   </ItemGroup>
 
 </Project>
