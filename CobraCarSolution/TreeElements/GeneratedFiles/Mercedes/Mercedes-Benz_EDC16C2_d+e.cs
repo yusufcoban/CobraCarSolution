@@ -15,7 +15,7 @@ namespace CobraCarSolution.TreeElements.VAG
     {
         public Mercedes_Benz_EDC16C2()
         {
-            Title = "Mercedes_Benz_EDC16C2";
+            Title = "EDC16C2";
             IsSolutionItem = true;
             hasDtcSolution = false;
             hasEgrSolution = true;

@@ -9,7 +9,7 @@ namespace CobraCarSolution.TreeElements.VAG
     {
         public VAG_MED17_1()
         {
-            Title = "VAG_MED17.1";
+            Title = "MED17.1";
             IsSolutionItem = true;
             hasDtcSolution = false;
             hasEgrSolution = false;

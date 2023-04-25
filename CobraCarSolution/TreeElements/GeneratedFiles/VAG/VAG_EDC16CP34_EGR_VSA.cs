@@ -6,7 +6,7 @@ namespace CobraCarSolution.TreeElements.VAG
 {
     class VAG_EDC16CP34_2 :MenuItem, ITreeItem  {
     public VAG_EDC16CP34_2()  {
-      Title = "VAG_EDC16CP34_V2";
+      Title = "EDC16CP34_V2";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = true;

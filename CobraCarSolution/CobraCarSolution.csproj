@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="TreeElements\GeneratedFiles\Mazda\" />
     <Folder Include="TreeElements\Testfiles\" />
     <Folder Include="TreeElements\PSA\" />
   </ItemGroup>

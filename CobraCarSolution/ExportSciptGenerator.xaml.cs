@@ -170,7 +170,7 @@ namespace CobraCarSolution
                 }
 
                 FileCombreResult newComparer = new FileCombreResult(orgFile, diffCollectionFromUI, ecuFileName.Text);
-
+                bool ignoreThisFile = false;
 
                 if (newComparer != null)
                 {
@@ -183,135 +183,144 @@ namespace CobraCarSolution
                             {
                                 foreach (Combarer item in combareCreator.results.allCompareResult)
                                 {
-                                    List<string> templateForCheck = new List<string>();
-                                    List<string> templateForReplace = new List<string>();
-                                    switch (item.solutionName)
+                                    if (item.allDifferences == null)
                                     {
-                                        case "egrSolution":
+                                        ignoreThisFile = true;
+                                        MessageBox.Show("NO DIFFERENCES IN AT LEAST ONE COMBARING FILE!");
+                                    }
+                                    else
+                                    {
+                                        List<string> templateForCheck = new List<string>();
+                                        List<string> templateForReplace = new List<string>();
+                                        switch (item.solutionName)
+                                        {
+                                            case "egrSolution":
 
 
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found egr map...Delete map\");");
-                                            }
-                                            template.checkFileForEgrCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForEgrCODE = String.Join("\r\n", templateForReplace);
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found egr map...Delete map\");");
+                                                }
+                                                template.checkFileForEgrCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForEgrCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
+                                                break;
 
-                                        case "dpfSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found dpf map...Delete map\");");
-                                            }
-                                            template.checkFileForDpfCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForDpfCODE = String.Join("\r\n", templateForReplace);
+                                            case "dpfSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found dpf map...Delete map\");");
+                                                }
+                                                template.checkFileForDpfCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForDpfCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "tvaSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found tva map...Delete map\");");
-                                            }
-                                            template.checkFileForTvaCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForTvaCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "tvaSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found tva map...Delete map\");");
+                                                }
+                                                template.checkFileForTvaCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForTvaCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "lamdaSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found lamda map...Delete map\");");
-                                            }
-                                            template.checkFileForLamdaCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForLamdaCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "lamdaSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found lamda map...Delete map\");");
+                                                }
+                                                template.checkFileForLamdaCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForLamdaCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "flapsSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found flaps map...Delete map\");");
-                                            }
-                                            template.checkFileForFlapsCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForFlapsCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "flapsSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found flaps map...Delete map\");");
+                                                }
+                                                template.checkFileForFlapsCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForFlapsCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "startStopSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found startstop map...Delete map\");");
-                                            }
-                                            template.checkFileForStartStopCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForStartStopCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "startStopSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found startstop map...Delete map\");");
+                                                }
+                                                template.checkFileForStartStopCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForStartStopCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "adblueSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found startstop map...Delete map\");");
-                                            }
-                                            template.checkFileForStartStopCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForStartStopCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "adblueSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found startstop map...Delete map\");");
+                                                }
+                                                template.checkFileForStartStopCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForStartStopCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "readinessSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found readiness map...Delete map\");");
-                                            }
-                                            template.checkFileForReadinessCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForReadinessCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "readinessSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found readiness map...Delete map\");");
+                                                }
+                                                template.checkFileForReadinessCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForReadinessCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "immoSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
-                                            }
-                                            template.checkFileForImmoCODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForImmoCODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "immoSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
+                                                }
+                                                template.checkFileForImmoCODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForImmoCODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
-                                        case "specialiSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
-                                            }
-                                            template.checkFileForSpecialICODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForSpecialICODE = String.Join("\r\n", templateForReplace);
+                                                break;
+                                            case "specialiSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
+                                                }
+                                                template.checkFileForSpecialICODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForSpecialICODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
+                                                break;
 
-                                        case "specialiiSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
-                                            }
-                                            template.checkFileForSpecialIICODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForSpecialIICODE = String.Join("\r\n", templateForReplace);
+                                            case "specialiiSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
+                                                }
+                                                template.checkFileForSpecialIICODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForSpecialIICODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
+                                                break;
 
-                                        case "specialiiiSolution":
-                                            for (int i = 0; i < item.collectionDifference.Count(); i++)
-                                            {
-                                                templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
-                                                templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
-                                            }
-                                            template.checkFileForSpecialIIICODE = String.Join("\r\n", templateForCheck);
-                                            template.FileForSpecialIIICODE = String.Join("\r\n", templateForReplace);
+                                            case "specialiiiSolution":
+                                                for (int i = 0; i < item.collectionDifference.Count(); i++)
+                                                {
+                                                    templateForCheck.Add("validationEgrInFile= validationEgrInFile&&ToolBox.ExistsInFileMultiple(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " doubleBrackedClosed,  " + item.collectionDifference[i].startAdress + "    );");
+                                                    templateForReplace.Add("ToolBox.ReplaceInFileWithStartStop(new byte[] doubleBrackedOpen" + String.Join(",", item.collectionDifference[i].orginal) + " },\r\n new byte[] doubleBrackedOpen " + String.Join(",", item.collectionDifference[i].difference) + " doubleBrackedClosed," + item.collectionDifference[i].startAdress + "," + item.collectionDifference[i].endAdress + "," + " \"Found immo map...Delete map\");");
+                                                }
+                                                template.checkFileForSpecialIIICODE = String.Join("\r\n", templateForCheck);
+                                                template.FileForSpecialIIICODE = String.Join("\r\n", templateForReplace);
 
-                                            break;
+                                                break;
+                                        }
+
                                     }
                                 }
                             }
@@ -319,7 +328,10 @@ namespace CobraCarSolution
                         }
                     }
                     template.TitleECU = ecuFileName.Text;
-                    GenerateCSFile.GenerateFile(template, orgFilePath);
+                    if (!ignoreThisFile)
+                    {
+                                                GenerateCSFile.GenerateFile(template, orgFilePath);
+                    }
                     ResetAll();
                 }
 

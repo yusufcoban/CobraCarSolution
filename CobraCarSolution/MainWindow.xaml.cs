@@ -108,7 +108,6 @@ namespace CobraCarSolution
 
             MenuItem mazdaEntry = new MenuItem() { Title = "Mazda" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
-            mazdaEntry.Items.Add(new mazda_EDC16C3());
 
 
 

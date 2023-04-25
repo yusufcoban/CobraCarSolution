@@ -12,7 +12,7 @@ using System.IO;
 namespace CobraCarSolution.TreeElements.VAG  {
   class VAG_PPD1_3 :MenuItem, ITreeItem  {
     public VAG_PPD1_3()  {
-      Title = "VAG_PPD1.3";
+      Title = "PPD1.3";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = false;

@@ -12,7 +12,7 @@ using System.IO;
 namespace CobraCarSolution.TreeElements.VAG  {
   class VAG_EDC17U04 : MenuItem, ITreeItem  {
     public VAG_EDC17U04()  {
-      Title = "VAG_EDC17U04";
+      Title = "EDC17U04";
       IsSolutionItem =  true;
       hasDtcSolution =  false;
       hasEgrSolution = true;
