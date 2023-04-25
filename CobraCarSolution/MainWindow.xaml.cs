@@ -51,6 +51,10 @@ namespace CobraCarSolution
             MenuItem landRoverEntry = new MenuItem() { Title = "LandRover" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
             landRoverEntry.Items.Add(new LANDROVER_edc16cp39());
+            landRoverEntry.Items.Add(new landrover_EDC17CP42());
+            landRoverEntry.Items.Add(new landrover_SID204());
+
+
 
 
             MenuItem mercedesEntry = new MenuItem() { Title = "Mercedes" };
@@ -61,6 +65,23 @@ namespace CobraCarSolution
             mercedesEntry.Items.Add(new Mercedes_ME2_8_1());
             mercedesEntry.Items.Add(new Mercedes_Benz_EDC16C2());
             mercedesEntry.Items.Add(new Mercedes_Benz_EDC16C31());
+            mercedesEntry.Items.Add(new EDC17C66());
+            mercedesEntry.Items.Add(new benz_DCM3_5());
+            mercedesEntry.Items.Add(new benz_SID307NR());
+
+            MenuItem bmwEntry = new MenuItem() { Title = "BMW" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+           bmwEntry.Items.Add(new BMW_EDC17C50());
+           bmwEntry.Items.Add(new EDC17CP09());
+
+            MenuItem nissanEntry = new MenuItem() { Title = "Nissan" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            nissanEntry.Items.Add(new nissan_denso()); 
+            nissanEntry.Items.Add(new nissan_Denso_SH7058());
+            nissanEntry.Items.Add(new nissan_EDC16CP33());
+            nissanEntry.Items.Add(new nissan_EDC16CP42());
+            nissanEntry.Items.Add(new nissan_SID301());
+
 
             MenuItem mitsubushiEntry = new MenuItem() { Title = "Mitsubushi" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
@@ -73,18 +94,27 @@ namespace CobraCarSolution
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
             SuzukiEntry.Items.Add(new Suzuki_MagnetiMarelli_MJD6J());
 
+            MenuItem opelEntry = new MenuItem() { Title = "Opel" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            opelEntry.Items.Add(new Opel_MJD_Marelli());
+            opelEntry.Items.Add(new opel_SIMTEC71_5());
+
+
             MenuItem toyotaEntry = new MenuItem() { Title = "Toyota" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
             toyotaEntry.Items.Add(new Toyota_edc16c10());
             toyotaEntry.Items.Add(new Toyota_edc16c31());
             toyotaEntry.Items.Add(new Toyota_edc17cp07());
 
+            MenuItem mazdaEntry = new MenuItem() { Title = "Mazda" };
+            // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
+            mazdaEntry.Items.Add(new mazda_EDC16C3());
 
 
 
             MenuItem root2 = new MenuItem() { Title = "VAG" };
             root2.Items.Add(new VAG_EDC15());
-            root2.Items.Add(new VAG_EDC17CP14());
+           // root2.Items.Add(new VAG_EDC17CP14());
             root2.Items.Add(new VAG_EDC17U01());
             root2.Items.Add(new VAG_EDC17U04());
             root2.Items.Add(new VAG_EDC16CP34());
@@ -92,8 +122,14 @@ namespace CobraCarSolution
             root2.Items.Add(new VAG_EDC16U34());
             root2.Items.Add(new VAG_MED17_1());
             root2.Items.Add(new VAG_PPD1_3());
+            root2.Items.Add(new VAG_EDC17CP20());
+            root2.Items.Add(new vag_EDC17CP14());
+            root2.Items.Add(new VAG_EDC17CP46());
 
-            
+
+
+
+
 
             MenuItem volvoEntry = new MenuItem() { Title = "Volvo" };
            volvoEntry.Items.Add(new Volvo_XC90_ME7_0());
@@ -108,7 +144,12 @@ namespace CobraCarSolution
 
 
             trvMenu.Items.Add(hondaEntry);
+            trvMenu.Items.Add(bmwEntry);
+            trvMenu.Items.Add(mazdaEntry);
+
             trvMenu.Items.Add(ivecoEntry);
+            trvMenu.Items.Add(nissanEntry);
+
             trvMenu.Items.Add(jeepEntry);
             trvMenu.Items.Add(landRoverEntry);
             trvMenu.Items.Add(mercedesEntry);
