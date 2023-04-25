@@ -198,6 +198,12 @@ namespace ToolBoxNameSpace
             {
                 endAdress = startAdress + (findBytes.Count() - 1);
             }
+            if (endAdress > array.Count())
+            {
+                ToolBox.AddLineToConsoleBox("Filesize not correct!");
+                ToolBox.ResetStateAndFile();
+                return false;
+            }
             return CheckInFileWithStartStopAdress(findBytes, startAdress, endAdress);
         }
 
@@ -376,6 +382,12 @@ namespace ToolBoxNameSpace
             else
             {
                 endAdress = endAdress + buffer;
+            }
+            if(endAdress> array.Count())
+            {
+                ToolBox.AddLineToConsoleBox("Filesize not correct!");
+                ToolBox.ResetStateAndFile();
+                return false;
             }
             ReplaceBytes(findBytes, replaceBytes, startAdress, endAdress);
             if (!string.IsNullOrEmpty(successMessage))
