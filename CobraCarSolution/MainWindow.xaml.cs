@@ -240,6 +240,7 @@ namespace CobraCarSolution
                        }
                        if (selcted.hasSpecialIISolution)
                        {
+                           textSPECIALII.Text = selcted.specialIIISolutionDescription;
                            ToolBox.AddLineToConsoleBox($"Module has specialII  solution...");
                            ToolBox.setSPECIALIIButtonState(1, false);
                        }
