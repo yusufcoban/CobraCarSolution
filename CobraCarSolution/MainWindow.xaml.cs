@@ -226,19 +226,19 @@ namespace CobraCarSolution
                        {
                            textSPECIALI.Text = selcted.specialISolutionDescription;
 
-                           ToolBox.AddLineToConsoleBox($"Module has specialI  solution...");
+                           ToolBox.AddLineToConsoleBox($"Module has " + selcted.specialISolutionDescription + "  solution...");
                            ToolBox.setSPECIALIButtonState(1, false);
                        }
                        if (selcted.hasSpecialIISolution)
                        {
                            textSPECIALII.Text = selcted.specialIISolutionDescription;
-                           ToolBox.AddLineToConsoleBox($"Module has specialII  solution...");
+                           ToolBox.AddLineToConsoleBox($"Module has " + selcted.specialIISolutionDescription + "  solution...");
                            ToolBox.setSPECIALIIButtonState(1, false);
                        }
                        if (selcted.hasSpecialIIISolution)
                        {
                            textSPECIALIII.Text = selcted.specialIIISolutionDescription;
-                           ToolBox.AddLineToConsoleBox($"Module has specialIII  solution...");
+                           ToolBox.AddLineToConsoleBox($"Module has " + selcted.specialIIISolutionDescription + "  solution...");
                            ToolBox.setSPECIALIIIButtonState(1, false);
                        }
 
