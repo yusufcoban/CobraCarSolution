@@ -72,7 +72,7 @@ namespace CobraCarSolution
             MenuItem bmwEntry = new MenuItem() { Title = "BMW" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
            bmwEntry.Items.Add(new BMW_EDC17C50());
-           bmwEntry.Items.Add(new EDC17CP09());
+           bmwEntry.Items.Add(new BMW_EDC17CP09());
 
             MenuItem nissanEntry = new MenuItem() { Title = "Nissan" };
             // MenuItem childItem1 = new MenuItem() { Title = "Child item #1" };
@@ -146,6 +146,8 @@ namespace CobraCarSolution
             trvMenu.Items.Add(hondaEntry);
             trvMenu.Items.Add(bmwEntry);
             trvMenu.Items.Add(mazdaEntry);
+            trvMenu.Items.Add(opelEntry);
+
 
             trvMenu.Items.Add(ivecoEntry);
             trvMenu.Items.Add(nissanEntry);

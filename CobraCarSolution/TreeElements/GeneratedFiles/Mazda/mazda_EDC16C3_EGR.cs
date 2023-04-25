@@ -1,4 +1,6 @@
 using ToolBoxNameSpace;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CobraCarSolution.TreeElements.VAG
 {
@@ -199,7 +201,7 @@ namespace CobraCarSolution.TreeElements.VAG
 
     }
 
-    public List < string > getListOfDtcCodes()  {
+    public List<string> getListOfDtcCodes()  {
       return null;
     }
 
