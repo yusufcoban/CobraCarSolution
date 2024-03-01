@@ -183,7 +183,7 @@ namespace CobraCarSolution
                             {
                                 foreach (Combarer item in combareCreator.results.allCompareResult)
                                 {
-                                    if (item.collectionDifference.Any())
+                                    if (!item.collectionDifference.Any())
                                     {
                                         ignoreThisFile = true;
                                         MessageBox.Show("NO DIFFERENCES IN AT LEAST ONE COMBARING FILE!");
@@ -330,7 +330,7 @@ namespace CobraCarSolution
                     template.TitleECU = ecuFileName.Text;
                     if (!ignoreThisFile)
                     {
-                                                GenerateCSFile.GenerateFile(template, orgFilePath);
+                        GenerateCSFile.GenerateFile(template, orgFilePath);
                     }
                     ResetAll();
                 }
