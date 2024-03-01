@@ -183,7 +183,7 @@ namespace CobraCarSolution
                             {
                                 foreach (Combarer item in combareCreator.results.allCompareResult)
                                 {
-                                    if (item.allDifferences == null)
+                                    if (item.collectionDifference.Any())
                                     {
                                         ignoreThisFile = true;
                                         MessageBox.Show("NO DIFFERENCES IN AT LEAST ONE COMBARING FILE!");
