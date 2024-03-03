@@ -22,7 +22,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="179*"/>
             <ColumnDefinition Width="322*"/>
-            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="459*"/>
         </Grid.ColumnDefinitions>
         <TreeView x:Name="trvMenu" PreviewMouseDoubleClick="trvMenu_Click" Margin="10,0,215,-441" Grid.RowSpan="1" Grid.ColumnSpan="2">
@@ -32,9 +33,9 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <Image Source="/image.png" Margin="412,470,-15,-465" Panel.ZIndex="1" Grid.Column="3" Stretch="Uniform" Height="100"/>
-        <TextBlock Text="Available OneClick Solutions" FontSize="20" FontWeight="Bold" Margin="161,3,410,0" Height="31" Grid.ColumnSpan="3" VerticalAlignment="Top" Grid.Column="1" />
-        <Grid Grid.ColumnSpan="3"  Grid.RowSpan="1" Margin="118,43,341,-350" Grid.Column="1">
+        <Image Source="/image.png" Margin="412,470,-15,-465" Panel.ZIndex="1" Grid.Column="4" Stretch="Uniform" Height="100"/>
+        <TextBlock Text="Available OneClick Solutions" FontSize="20" FontWeight="Bold" Margin="161,3,410,0" Height="31" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Column="1" />
+        <Grid Grid.ColumnSpan="4"  Grid.RowSpan="1" Margin="118,43,341,-350" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="190" />
                 <ColumnDefinition Width="110" />
@@ -145,15 +146,20 @@
 
         </Grid>
 
-        <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible"  x:Name="consoleBox" TextWrapping="Wrap" Text="..." TextChanged="consoleBox_TextChanged" Grid.Column="3" Margin="119,0,-22,-440"/>
+        <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible"  x:Name="consoleBox" TextWrapping="Wrap" Text="..." TextChanged="consoleBox_TextChanged" Grid.Column="4" Margin="119,0,-22,-440"/>
+        <Viewbox Margin="108,38,332,-300" Grid.ColumnSpan="4" Grid.Column="1" Stretch="Fill">
 
-        <busyIndicator:BusyMask x:Name="BusyIndicator" 
-                        IsBusy="True" 
-                        IndicatorType="Dashes" 
-                        BusyContent="Please wait..." 
-                        BusyContentMargin="0,20,0,0" 
-                        IsBusyAtStartup="False" Margin="111,35,329,-297" Grid.ColumnSpan="3" Grid.Column="1" />
-        <Button Content="Export File" x:Name="saveButton" Panel.ZIndex="1" IsEnabled="false" Grid.Column="2" Margin="11,484,374,-440" Click="saveButton_Click" Grid.ColumnSpan="2" />
+            <Grid>
+
+                <busyIndicator:BusyMask x:Name="BusyIndicator" 
+                    IsBusy="True" 
+                    IndicatorType="Dashes" 
+                    BusyContent="Please wait..." 
+                    BusyContentMargin="0,20,0,0" 
+                    IsBusyAtStartup="False" />
+            </Grid>
+        </Viewbox>
+        <Button Content="Export File" x:Name="saveButton" Panel.ZIndex="1" IsEnabled="false" Grid.Column="2" Margin="11,484,374,-440" Click="saveButton_Click" Grid.ColumnSpan="3" />
         <Button Content="GenerateFile"   Panel.ZIndex="1" Click="OpenAdminArea" Margin="130,484,37,-439" Grid.Column="1"/>
     </Grid>
 
