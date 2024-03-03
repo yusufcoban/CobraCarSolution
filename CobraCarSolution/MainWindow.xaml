@@ -57,7 +57,10 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.ColumnSpan="2"  >
                     <TextBlock Text="Egr:" />
-                    <ts:HorizontalToggleSwitch x:Name="toggleSwitch1" Unchecked="testCallEgr"  IsEnabled="False"  RenderTransformOrigin="0.518,0.598" />
+                    <CheckBox x:Name="toggleSwitch1"  Unchecked="testCallEgr" IsEnabled="False">
+
+                    </CheckBox>
+                    <!-- <ts:HorizontalToggleSwitch x:Name="toggleSwitch1" Unchecked="testCallEgr"  IsEnabled="False"  RenderTransformOrigin="0.518,0.598" />-->
                 </StackPanel>
             </Grid>
 
@@ -143,6 +146,7 @@
         </Grid>
 
         <TextBox  ScrollViewer.VerticalScrollBarVisibility="Visible"  x:Name="consoleBox" TextWrapping="Wrap" Text="..." TextChanged="consoleBox_TextChanged" Grid.Column="3" Margin="119,0,-22,-440"/>
+
         <busyIndicator:BusyMask x:Name="BusyIndicator" 
                         IsBusy="True" 
                         IndicatorType="Dashes" 

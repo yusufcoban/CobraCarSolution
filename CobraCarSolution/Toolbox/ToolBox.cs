@@ -75,7 +75,7 @@ namespace ToolBoxNameSpace
         public static void setEgrButtonState(int state, bool locked = false)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            HorizontalToggleSwitch egrSwitch = mainWindow.FindName("toggleSwitch1") as HorizontalToggleSwitch;
+            CheckBox egrSwitch = mainWindow.FindName("toggleSwitch1") as CheckBox;
 
             mainWindow.RemoveSwitchHandler(egrSwitch, "testCallEgr");
 

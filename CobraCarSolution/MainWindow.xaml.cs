@@ -275,11 +275,51 @@ namespace CobraCarSolution
             // Get a reference to the event handler method using reflection
             MethodInfo methodInfo = mainWindow.GetType().GetMethod(handlerName);
             RoutedEventHandler handler = (RoutedEventHandler)Delegate.CreateDelegate(typeof(RoutedEventHandler), mainWindow, methodInfo);
+            if (switchControl != null)
+            {
+                // Add the event handler back to the Checked event of the switch control in the current MainWindow
+                switchControl.Unchecked -= handler;
+            }
+            else
+            {
+                //Check here for unfinished code
+            }
+           
+        }
 
-            // Add the event handler back to the Checked event of the switch control in the current MainWindow
-            switchControl.Unchecked -= handler;
+        public void RemoveSwitchHandler(CheckBox switchControl, string handlerName)
+        {
+            // Get a reference to the current MainWindow instance
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            // Get a reference to the event handler method using reflection
+            MethodInfo methodInfo = mainWindow.GetType().GetMethod(handlerName);
+            RoutedEventHandler handler = (RoutedEventHandler)Delegate.CreateDelegate(typeof(RoutedEventHandler), mainWindow, methodInfo);
+            if (switchControl != null)
+            {
+                // Add the event handler back to the Checked event of the switch control in the current MainWindow
+                switchControl.Unchecked -= handler;
+            }
+            else
+            {
+                //search for checkboxes
+            }
+
         }
         public void AddSwitchHandler(HorizontalToggleSwitch switchControl, string handlerName)
+        {
+            // Get a reference to the current MainWindow instance
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            // Get a reference to the event handler method using reflection
+            MethodInfo methodInfo = mainWindow.GetType().GetMethod(handlerName);
+            RoutedEventHandler handler = (RoutedEventHandler)Delegate.CreateDelegate(typeof(RoutedEventHandler), mainWindow, methodInfo);
+
+            // Remove the event handler from the Checked event of the switch control in the current MainWindow
+            switchControl.Unchecked += handler;
+        }
+
+        public void AddSwitchHandler(CheckBox switchControl, string handlerName)
         {
             // Get a reference to the current MainWindow instance
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
